@@ -1,0 +1,218 @@
+   1              		.file	"xmodem.c"
+   2              		.text
+   3              		.align	2
+   5              	flushinput:
+   6              		@ args = 0, pretend = 0, frame = 0
+   7              		@ frame_needed = 0, uses_anonymous_args = 0
+   8 0000 E52DE004 		str	lr, [sp, #-4]!
+   9              	.L3:
+  10 0004 E3A00F4B 		mov	r0, #300
+  11 0008 EBFFFFFE 		bl	_inbyte
+  12 000c E3500000 		cmp	r0, #0
+  13 0010 AAFFFFFB 		bge	.L3
+  14 0014 E49DF004 		ldr	pc, [sp], #4
+  16              		.align	2
+  17              		.global	xmodemReceive
+  19              	xmodemReceive:
+  20              		@ args = 0, pretend = 0, frame = 1032
+  21              		@ frame_needed = 0, uses_anonymous_args = 0
+  22 0018 E92D4FF0 		stmfd	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  23 001c E3A07000 		mov	r7, #0
+  24 0020 E24DDB01 		sub	sp, sp, #1024
+  25 0024 E24DD008 		sub	sp, sp, #8
+  26 0028 E1A0B000 		mov	fp, r0
+  27 002c E1A09001 		mov	r9, r1
+  28 0030 E3A0A019 		mov	sl, #25
+  29 0034 E3A04043 		mov	r4, #67
+  30 0038 E3A08001 		mov	r8, #1
+  31 003c E1A06007 		mov	r6, r7
+  32 0040 EA000000 		b	.L62
+  33              	.L10:
+  34 0044 E3A04015 		mov	r4, #21
+  35              	.L62:
+  36 0048 E3A05000 		mov	r5, #0
+  37              	.L11:
+  38 004c E3540000 		cmp	r4, #0
+  39 0050 11A00004 		movne	r0, r4
+  40 0054 1BFFFFFE 		blne	_outbyte
+  41              	.L12:
+  42 0058 E3A00FFA 		mov	r0, #1000
+  43 005c EBFFFFFE 		bl	_inbyte
+  44 0060 E3500000 		cmp	r0, #0
+  45 0064 BA000019 		blt	.L14
+  46 0068 E3500002 		cmp	r0, #2
+  47 006c 0A000025 		beq	.L17
+  48 0070 CA000002 		bgt	.L20
+  49 0074 E3500001 		cmp	r0, #1
+  50 0078 1A000014 		bne	.L14
+  51 007c EA000004 		b	.L16
+  52              	.L20:
+  53 0080 E3500004 		cmp	r0, #4
+  54 0084 0A000004 		beq	.L18
+  55 0088 E3500018 		cmp	r0, #24
+  56 008c 1A00000F 		bne	.L14
+  57 0090 EA000005 		b	.L19
+  58              	.L16:
+  59 0094 E3A05080 		mov	r5, #128
+  60 0098 EA00001B 		b	.L21
+  61              	.L18:
+  62 009c E3A00006 		mov	r0, #6
+  63 00a0 EBFFFFFE 		bl	_outbyte
+  64 00a4 EBFFFFD5 		bl	flushinput
+  65 00a8 EA00007B 		b	.L22
+  66              	.L19:
+  67 00ac E3A00FFA 		mov	r0, #1000
+  68 00b0 EBFFFFFE 		bl	_inbyte
+  69 00b4 E3500018 		cmp	r0, #24
+  70 00b8 1A000004 		bne	.L14
+  71 00bc EBFFFFCF 		bl	flushinput
+  72 00c0 E3A00006 		mov	r0, #6
+  73 00c4 EBFFFFFE 		bl	_outbyte
+  74 00c8 E3E06000 		mvn	r6, #0
+  75 00cc EA000072 		b	.L22
+  76              	.L14:
+  77 00d0 E2855001 		add	r5, r5, #1
+  78 00d4 E3550050 		cmp	r5, #80
+  79 00d8 1AFFFFDB 		bne	.L11
+  80 00dc E3540043 		cmp	r4, #67
+  81 00e0 0AFFFFD7 		beq	.L10
+  82 00e4 EBFFFFC5 		bl	flushinput
+  83 00e8 E3A00018 		mov	r0, #24
+  84 00ec EBFFFFFE 		bl	_outbyte
+  85 00f0 E3A00018 		mov	r0, #24
+  86 00f4 EBFFFFFE 		bl	_outbyte
+  87 00f8 E3A00018 		mov	r0, #24
+  88 00fc EBFFFFFE 		bl	_outbyte
+  89 0100 E3E06001 		mvn	r6, #1
+  90 0104 EA000064 		b	.L22
+  91              	.L17:
+  92 0108 E3A05B01 		mov	r5, #1024
+  93              	.L21:
+  94 010c E3540043 		cmp	r4, #67
+  95 0110 03A07001 		moveq	r7, #1
+  96 0114 E1A00000 		NOP
+  97 0118 E3A04000 		mov	r4, #0
+  98 011c E5CD0002 		strb	r0, [sp, #2]
+  99 0120 EA000006 		b	.L28
+ 100              	.L29:
+ 101 0124 EBFFFFFE 		bl	_inbyte
+ 102 0128 E28D3008 		add	r3, sp, #8
+ 103 012c E3500000 		cmp	r0, #0
+ 104 0130 E2433006 		sub	r3, r3, #6
+ 105 0134 E2844001 		add	r4, r4, #1
+ 106 0138 BA000052 		blt	.L30
+ 107 013c E7C40003 		strb	r0, [r4, r3]
+ 108              	.L28:
+ 109 0140 E3570000 		cmp	r7, #0
+ 110 0144 13A03004 		movne	r3, #4
+ 111 0148 03A03003 		moveq	r3, #3
+ 112 014c E0853003 		add	r3, r5, r3
+ 113 0150 E1540003 		cmp	r4, r3
+ 114 0154 E3A00FFA 		mov	r0, #1000
+ 115 0158 BAFFFFF1 		blt	.L29
+ 116 015c E5DD3004 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 117 0160 E5DD2003 		ldrb	r2, [sp, #3]	@ zero_extendqisi2
+ 118 0164 E1E03003 		mvn	r3, r3
+ 119 0168 E20330FF 		and	r3, r3, #255
+ 120 016c E1520003 		cmp	r2, r3
+ 121 0170 1A000044 		bne	.L30
+ 122 0174 E1520008 		cmp	r2, r8
+ 123 0178 0A000002 		beq	.L34
+ 124 017c E2483001 		sub	r3, r8, #1
+ 125 0180 E1520003 		cmp	r2, r3
+ 126 0184 1A00003F 		bne	.L30
+ 127              	.L34:
+ 128 0188 E3570000 		cmp	r7, #0
+ 129 018c E28D4008 		add	r4, sp, #8
+ 130 0190 E2444006 		sub	r4, r4, #6
+ 131 0194 01A01007 		moveq	r1, r7
+ 132 0198 02840003 		addeq	r0, r4, #3
+ 133 019c 01A02001 		moveq	r2, r1
+ 134 01a0 0A00000D 		beq	.L38
+ 135 01a4 E2840003 		add	r0, r4, #3
+ 136 01a8 E1A01005 		mov	r1, r5
+ 137 01ac EBFFFFFE 		bl	crc16_ccitt
+ 138 01b0 E0843005 		add	r3, r4, r5
+ 139 01b4 E5D32004 		ldrb	r2, [r3, #4]	@ zero_extendqisi2
+ 140 01b8 E5D33003 		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ 141 01bc E0822403 		add	r2, r2, r3, asl #8
+ 142 01c0 E1A02802 		mov	r2, r2, asl #16
+ 143 01c4 E1500822 		cmp	r0, r2, lsr #16
+ 144 01c8 1A00002E 		bne	.L30
+ 145 01cc EA00000C 		b	.L39
+ 146              	.L40:
+ 147 01d0 E5503001 		ldrb	r3, [r0, #-1]	@ zero_extendqisi2
+ 148 01d4 E0813003 		add	r3, r1, r3
+ 149 01d8 E20310FF 		and	r1, r3, #255
+ 150              	.L38:
+ 151 01dc E1520005 		cmp	r2, r5
+ 152 01e0 E2800001 		add	r0, r0, #1
+ 153 01e4 E2822001 		add	r2, r2, #1
+ 154 01e8 BAFFFFF8 		blt	.L40
+ 155 01ec E28D2B01 		add	r2, sp, #1024
+ 156 01f0 E2822008 		add	r2, r2, #8
+ 157 01f4 E0823005 		add	r3, r2, r5
+ 158 01f8 E5533403 		ldrb	r3, [r3, #-1027]	@ zero_extendqisi2
+ 159 01fc E1530001 		cmp	r3, r1
+ 160 0200 1A000020 		bne	.L30
+ 161              	.L39:
+ 162 0204 E5DD3003 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 163 0208 E1530008 		cmp	r3, r8
+ 164 020c 1A00000F 		bne	.L42
+ 165 0210 E0663009 		rsb	r3, r6, r9
+ 166 0214 E1550003 		cmp	r5, r3
+ 167 0218 B1A04005 		movlt	r4, r5
+ 168 021c A1A04003 		movge	r4, r3
+ 169 0220 E3540000 		cmp	r4, #0
+ 170 0224 DA000005 		ble	.L44
+ 171 0228 E28D1008 		add	r1, sp, #8
+ 172 022c E08B0006 		add	r0, fp, r6
+ 173 0230 E2411003 		sub	r1, r1, #3
+ 174 0234 E1A02004 		mov	r2, r4
+ 175 0238 EBFFFFFE 		bl	memcpy
+ 176 023c E0866004 		add	r6, r6, r4
+ 177              	.L44:
+ 178 0240 E2883001 		add	r3, r8, #1
+ 179 0244 E20380FF 		and	r8, r3, #255
+ 180 0248 E3A0A019 		mov	sl, #25
+ 181 024c EA00000B 		b	.L46
+ 182              	.L42:
+ 183 0250 E24AA001 		sub	sl, sl, #1
+ 184 0254 E35A0000 		cmp	sl, #0
+ 185 0258 CA000008 		bgt	.L46
+ 186 025c EBFFFF67 		bl	flushinput
+ 187 0260 E3A00018 		mov	r0, #24
+ 188 0264 EBFFFFFE 		bl	_outbyte
+ 189 0268 E3A00018 		mov	r0, #24
+ 190 026c EBFFFFFE 		bl	_outbyte
+ 191 0270 E3A00018 		mov	r0, #24
+ 192 0274 EBFFFFFE 		bl	_outbyte
+ 193 0278 E3E06002 		mvn	r6, #2
+ 194 027c EA000006 		b	.L22
+ 195              	.L46:
+ 196 0280 E3A00006 		mov	r0, #6
+ 197 0284 EA000001 		b	.L61
+ 198              	.L30:
+ 199 0288 EBFFFF5C 		bl	flushinput
+ 200 028c E3A00015 		mov	r0, #21
+ 201              	.L61:
+ 202 0290 EBFFFFFE 		bl	_outbyte
+ 203 0294 E3A04000 		mov	r4, #0
+ 204 0298 EAFFFF6A 		b	.L62
+ 205              	.L22:
+ 206 029c E1A00006 		mov	r0, r6
+ 207 02a0 E28DD008 		add	sp, sp, #8
+ 208 02a4 E28DDB01 		add	sp, sp, #1024
+ 209 02a8 E8BD8FF0 		ldmfd	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 211              		.ident	"GCC: (GNU) 4.1.1 (WinARM)"
+DEFINED SYMBOLS
+                            *ABS*:00000000 xmodem.c
+C:\Users\jh\AppData\Local\Temp/cckrcaaa.s:5      .text:00000000 flushinput
+C:\Users\jh\AppData\Local\Temp/cckrcaaa.s:8      .text:00000000 $a
+C:\Users\jh\AppData\Local\Temp/cckrcaaa.s:19     .text:00000018 xmodemReceive
+
+UNDEFINED SYMBOLS
+_inbyte
+_outbyte
+crc16_ccitt
+memcpy

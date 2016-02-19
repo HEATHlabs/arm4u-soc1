@@ -1,0 +1,303 @@
+   1              		.file	"crc16.c"
+   2              		.text
+   3              		.align	2
+   4              		.global	crc16_ccitt
+   6              	crc16_ccitt:
+   7              		@ args = 0, pretend = 0, frame = 0
+   8              		@ frame_needed = 0, uses_anonymous_args = 0
+   9 0000 E92D4010 		stmfd	sp!, {r4, lr}
+  10 0004 E3A0C000 		mov	ip, #0
+  11 0008 E1A04000 		mov	r4, r0
+  12 000c E1A0E00C 		mov	lr, ip
+  13 0010 E1A00001 		mov	r0, r1
+  14 0014 EA00000A 		b	.L2
+  15              	.L3:
+  16 0018 E7DE3004 		ldrb	r3, [lr, r4]	@ zero_extendqisi2
+  17 001c E023342C 		eor	r3, r3, ip, lsr #8
+  18 0020 E1A03083 		mov	r3, r3, asl #1
+  19 0024 E0832001 		add	r2, r3, r1
+  20 0028 E7D31001 		ldrb	r1, [r3, r1]	@ zero_extendqisi2
+  21 002c E5D23001 		ldrb	r3, [r2, #1]	@ zero_extendqisi2
+  22 0030 E1833401 		orr	r3, r3, r1, asl #8
+  23 0034 E023340C 		eor	r3, r3, ip, asl #8
+  24 0038 E1A03803 		mov	r3, r3, asl #16
+  25 003c E28EE001 		add	lr, lr, #1
+  26 0040 E1A0C823 		mov	ip, r3, lsr #16
+  27              	.L2:
+  28 0044 E15E0000 		cmp	lr, r0
+  29 0048 E59F1008 		ldr	r1, .L6
+  30 004c BAFFFFF1 		blt	.L3
+  31 0050 E1A0000C 		mov	r0, ip
+  32 0054 E8BD8010 		ldmfd	sp!, {r4, pc}
+  33              	.L7:
+  34              		.align	2
+  35              	.L6:
+  36 0058 00000000 		.word	crc16tab
+  38              		.section	.rodata
+  39              		.align	1
+  42              	crc16tab:
+  43 0000 0000     		.short	0
+  44 0002 1021     		.short	4129
+  45 0004 2042     		.short	8258
+  46 0006 3063     		.short	12387
+  47 0008 4084     		.short	16516
+  48 000a 50A5     		.short	20645
+  49 000c 60C6     		.short	24774
+  50 000e 70E7     		.short	28903
+  51 0010 8108     		.short	-32504
+  52 0012 9129     		.short	-28375
+  53 0014 A14A     		.short	-24246
+  54 0016 B16B     		.short	-20117
+  55 0018 C18C     		.short	-15988
+  56 001a D1AD     		.short	-11859
+  57 001c E1CE     		.short	-7730
+  58 001e F1EF     		.short	-3601
+  59 0020 1231     		.short	4657
+  60 0022 0210     		.short	528
+  61 0024 3273     		.short	12915
+  62 0026 2252     		.short	8786
+  63 0028 52B5     		.short	21173
+  64 002a 4294     		.short	17044
+  65 002c 72F7     		.short	29431
+  66 002e 62D6     		.short	25302
+  67 0030 9339     		.short	-27847
+  68 0032 8318     		.short	-31976
+  69 0034 B37B     		.short	-19589
+  70 0036 A35A     		.short	-23718
+  71 0038 D3BD     		.short	-11331
+  72 003a C39C     		.short	-15460
+  73 003c F3FF     		.short	-3073
+  74 003e E3DE     		.short	-7202
+  75 0040 2462     		.short	9314
+  76 0042 3443     		.short	13379
+  77 0044 0420     		.short	1056
+  78 0046 1401     		.short	5121
+  79 0048 64E6     		.short	25830
+  80 004a 74C7     		.short	29895
+  81 004c 44A4     		.short	17572
+  82 004e 5485     		.short	21637
+  83 0050 A56A     		.short	-23190
+  84 0052 B54B     		.short	-19125
+  85 0054 8528     		.short	-31448
+  86 0056 9509     		.short	-27383
+  87 0058 E5EE     		.short	-6674
+  88 005a F5CF     		.short	-2609
+  89 005c C5AC     		.short	-14932
+  90 005e D58D     		.short	-10867
+  91 0060 3653     		.short	13907
+  92 0062 2672     		.short	9842
+  93 0064 1611     		.short	5649
+  94 0066 0630     		.short	1584
+  95 0068 76D7     		.short	30423
+  96 006a 66F6     		.short	26358
+  97 006c 5695     		.short	22165
+  98 006e 46B4     		.short	18100
+  99 0070 B75B     		.short	-18597
+ 100 0072 A77A     		.short	-22662
+ 101 0074 9719     		.short	-26855
+ 102 0076 8738     		.short	-30920
+ 103 0078 F7DF     		.short	-2081
+ 104 007a E7FE     		.short	-6146
+ 105 007c D79D     		.short	-10339
+ 106 007e C7BC     		.short	-14404
+ 107 0080 48C4     		.short	18628
+ 108 0082 58E5     		.short	22757
+ 109 0084 6886     		.short	26758
+ 110 0086 78A7     		.short	30887
+ 111 0088 0840     		.short	2112
+ 112 008a 1861     		.short	6241
+ 113 008c 2802     		.short	10242
+ 114 008e 3823     		.short	14371
+ 115 0090 C9CC     		.short	-13876
+ 116 0092 D9ED     		.short	-9747
+ 117 0094 E98E     		.short	-5746
+ 118 0096 F9AF     		.short	-1617
+ 119 0098 8948     		.short	-30392
+ 120 009a 9969     		.short	-26263
+ 121 009c A90A     		.short	-22262
+ 122 009e B92B     		.short	-18133
+ 123 00a0 5AF5     		.short	23285
+ 124 00a2 4AD4     		.short	19156
+ 125 00a4 7AB7     		.short	31415
+ 126 00a6 6A96     		.short	27286
+ 127 00a8 1A71     		.short	6769
+ 128 00aa 0A50     		.short	2640
+ 129 00ac 3A33     		.short	14899
+ 130 00ae 2A12     		.short	10770
+ 131 00b0 DBFD     		.short	-9219
+ 132 00b2 CBDC     		.short	-13348
+ 133 00b4 FBBF     		.short	-1089
+ 134 00b6 EB9E     		.short	-5218
+ 135 00b8 9B79     		.short	-25735
+ 136 00ba 8B58     		.short	-29864
+ 137 00bc BB3B     		.short	-17605
+ 138 00be AB1A     		.short	-21734
+ 139 00c0 6CA6     		.short	27814
+ 140 00c2 7C87     		.short	31879
+ 141 00c4 4CE4     		.short	19684
+ 142 00c6 5CC5     		.short	23749
+ 143 00c8 2C22     		.short	11298
+ 144 00ca 3C03     		.short	15363
+ 145 00cc 0C60     		.short	3168
+ 146 00ce 1C41     		.short	7233
+ 147 00d0 EDAE     		.short	-4690
+ 148 00d2 FD8F     		.short	-625
+ 149 00d4 CDEC     		.short	-12820
+ 150 00d6 DDCD     		.short	-8755
+ 151 00d8 AD2A     		.short	-21206
+ 152 00da BD0B     		.short	-17141
+ 153 00dc 8D68     		.short	-29336
+ 154 00de 9D49     		.short	-25271
+ 155 00e0 7E97     		.short	32407
+ 156 00e2 6EB6     		.short	28342
+ 157 00e4 5ED5     		.short	24277
+ 158 00e6 4EF4     		.short	20212
+ 159 00e8 3E13     		.short	15891
+ 160 00ea 2E32     		.short	11826
+ 161 00ec 1E51     		.short	7761
+ 162 00ee 0E70     		.short	3696
+ 163 00f0 FF9F     		.short	-97
+ 164 00f2 EFBE     		.short	-4162
+ 165 00f4 DFDD     		.short	-8227
+ 166 00f6 CFFC     		.short	-12292
+ 167 00f8 BF1B     		.short	-16613
+ 168 00fa AF3A     		.short	-20678
+ 169 00fc 9F59     		.short	-24743
+ 170 00fe 8F78     		.short	-28808
+ 171 0100 9188     		.short	-28280
+ 172 0102 81A9     		.short	-32343
+ 173 0104 B1CA     		.short	-20022
+ 174 0106 A1EB     		.short	-24085
+ 175 0108 D10C     		.short	-12020
+ 176 010a C12D     		.short	-16083
+ 177 010c F14E     		.short	-3762
+ 178 010e E16F     		.short	-7825
+ 179 0110 1080     		.short	4224
+ 180 0112 00A1     		.short	161
+ 181 0114 30C2     		.short	12482
+ 182 0116 20E3     		.short	8419
+ 183 0118 5004     		.short	20484
+ 184 011a 4025     		.short	16421
+ 185 011c 7046     		.short	28742
+ 186 011e 6067     		.short	24679
+ 187 0120 83B9     		.short	-31815
+ 188 0122 9398     		.short	-27752
+ 189 0124 A3FB     		.short	-23557
+ 190 0126 B3DA     		.short	-19494
+ 191 0128 C33D     		.short	-15555
+ 192 012a D31C     		.short	-11492
+ 193 012c E37F     		.short	-7297
+ 194 012e F35E     		.short	-3234
+ 195 0130 02B1     		.short	689
+ 196 0132 1290     		.short	4752
+ 197 0134 22F3     		.short	8947
+ 198 0136 32D2     		.short	13010
+ 199 0138 4235     		.short	16949
+ 200 013a 5214     		.short	21012
+ 201 013c 6277     		.short	25207
+ 202 013e 7256     		.short	29270
+ 203 0140 B5EA     		.short	-18966
+ 204 0142 A5CB     		.short	-23093
+ 205 0144 95A8     		.short	-27224
+ 206 0146 8589     		.short	-31351
+ 207 0148 F56E     		.short	-2706
+ 208 014a E54F     		.short	-6833
+ 209 014c D52C     		.short	-10964
+ 210 014e C50D     		.short	-15091
+ 211 0150 34E2     		.short	13538
+ 212 0152 24C3     		.short	9411
+ 213 0154 14A0     		.short	5280
+ 214 0156 0481     		.short	1153
+ 215 0158 7466     		.short	29798
+ 216 015a 6447     		.short	25671
+ 217 015c 5424     		.short	21540
+ 218 015e 4405     		.short	17413
+ 219 0160 A7DB     		.short	-22565
+ 220 0162 B7FA     		.short	-18438
+ 221 0164 8799     		.short	-30823
+ 222 0166 97B8     		.short	-26696
+ 223 0168 E75F     		.short	-6305
+ 224 016a F77E     		.short	-2178
+ 225 016c C71D     		.short	-14563
+ 226 016e D73C     		.short	-10436
+ 227 0170 26D3     		.short	9939
+ 228 0172 36F2     		.short	14066
+ 229 0174 0691     		.short	1681
+ 230 0176 16B0     		.short	5808
+ 231 0178 6657     		.short	26199
+ 232 017a 7676     		.short	30326
+ 233 017c 4615     		.short	17941
+ 234 017e 5634     		.short	22068
+ 235 0180 D94C     		.short	-9908
+ 236 0182 C96D     		.short	-13971
+ 237 0184 F90E     		.short	-1778
+ 238 0186 E92F     		.short	-5841
+ 239 0188 99C8     		.short	-26168
+ 240 018a 89E9     		.short	-30231
+ 241 018c B98A     		.short	-18038
+ 242 018e A9AB     		.short	-22101
+ 243 0190 5844     		.short	22596
+ 244 0192 4865     		.short	18533
+ 245 0194 7806     		.short	30726
+ 246 0196 6827     		.short	26663
+ 247 0198 18C0     		.short	6336
+ 248 019a 08E1     		.short	2273
+ 249 019c 3882     		.short	14466
+ 250 019e 28A3     		.short	10403
+ 251 01a0 CB7D     		.short	-13443
+ 252 01a2 DB5C     		.short	-9380
+ 253 01a4 EB3F     		.short	-5313
+ 254 01a6 FB1E     		.short	-1250
+ 255 01a8 8BF9     		.short	-29703
+ 256 01aa 9BD8     		.short	-25640
+ 257 01ac ABBB     		.short	-21573
+ 258 01ae BB9A     		.short	-17510
+ 259 01b0 4A75     		.short	19061
+ 260 01b2 5A54     		.short	23124
+ 261 01b4 6A37     		.short	27191
+ 262 01b6 7A16     		.short	31254
+ 263 01b8 0AF1     		.short	2801
+ 264 01ba 1AD0     		.short	6864
+ 265 01bc 2AB3     		.short	10931
+ 266 01be 3A92     		.short	14994
+ 267 01c0 FD2E     		.short	-722
+ 268 01c2 ED0F     		.short	-4849
+ 269 01c4 DD6C     		.short	-8852
+ 270 01c6 CD4D     		.short	-12979
+ 271 01c8 BDAA     		.short	-16982
+ 272 01ca AD8B     		.short	-21109
+ 273 01cc 9DE8     		.short	-25112
+ 274 01ce 8DC9     		.short	-29239
+ 275 01d0 7C26     		.short	31782
+ 276 01d2 6C07     		.short	27655
+ 277 01d4 5C64     		.short	23652
+ 278 01d6 4C45     		.short	19525
+ 279 01d8 3CA2     		.short	15522
+ 280 01da 2C83     		.short	11395
+ 281 01dc 1CE0     		.short	7392
+ 282 01de 0CC1     		.short	3265
+ 283 01e0 EF1F     		.short	-4321
+ 284 01e2 FF3E     		.short	-194
+ 285 01e4 CF5D     		.short	-12451
+ 286 01e6 DF7C     		.short	-8324
+ 287 01e8 AF9B     		.short	-20581
+ 288 01ea BFBA     		.short	-16454
+ 289 01ec 8FD9     		.short	-28711
+ 290 01ee 9FF8     		.short	-24584
+ 291 01f0 6E17     		.short	28183
+ 292 01f2 7E36     		.short	32310
+ 293 01f4 4E55     		.short	20053
+ 294 01f6 5E74     		.short	24180
+ 295 01f8 2E93     		.short	11923
+ 296 01fa 3EB2     		.short	16050
+ 297 01fc 0ED1     		.short	3793
+ 298 01fe 1EF0     		.short	7920
+ 299              		.ident	"GCC: (GNU) 4.1.1 (WinARM)"
+DEFINED SYMBOLS
+                            *ABS*:00000000 crc16.c
+C:\Users\jh\AppData\Local\Temp/ccELcaaa.s:6      .text:00000000 crc16_ccitt
+C:\Users\jh\AppData\Local\Temp/ccELcaaa.s:9      .text:00000000 $a
+C:\Users\jh\AppData\Local\Temp/ccELcaaa.s:36     .text:00000058 $d
+C:\Users\jh\AppData\Local\Temp/ccELcaaa.s:42     .rodata:00000000 crc16tab
+
+NO UNDEFINED SYMBOLS

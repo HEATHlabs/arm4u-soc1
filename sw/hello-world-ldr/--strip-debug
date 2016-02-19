@@ -1,0 +1,94 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+TARGET(elf32-bigarm)
+                0x00004000                . = 0x4000
+
+.text           0x00004000      0xe50
+ start*(.text)
+ .text          0x00004000       0x28 start.o
+ *(.text)
+ .text          0x00004028       0x30 hello-world.o
+                0x00004028                main
+ .text          0x00004058      0x43c ../mini-libc/printf.o
+                0x0000427c                print
+                0x00004428                printf
+                0x00004140                printi
+                0x0000407c                prints
+                0x00004058                outbyte
+                0x00004460                sprintf
+ .text          0x00004494      0x480 ../mini-libc/libc_asm.o
+                0x00004584                strcpy
+                0x0000488c                malloc
+                0x000044b0                _outbyte
+                0x00004500                __aeabi_idiv
+                0x000048c4                strncmp
+                0x000048a0                strncpy
+                0x000044d0                _inbyte
+                0x00004688                strcmp
+                0x000044a0                _testpass
+                0x00004880                init_malloc
+                0x00004500                _div
+                0x00004494                _testfail
+ .text          0x00004914      0x53c ../mini-libc/memcpy.o
+                0x00004914                memcpy
+
+.glue_7         0x00004e50        0x0
+ .glue_7        0x00004e50        0x0 hello-world.o
+ .glue_7        0x00004e50        0x0 start.o
+ .glue_7        0x00004e50        0x0 ../mini-libc/printf.o
+ .glue_7        0x00004e50        0x0 ../mini-libc/libc_asm.o
+ .glue_7        0x00004e50        0x0 ../mini-libc/memcpy.o
+
+.glue_7t        0x00004e50        0x0
+ .glue_7t       0x00004e50        0x0 hello-world.o
+ .glue_7t       0x00004e50        0x0 start.o
+ .glue_7t       0x00004e50        0x0 ../mini-libc/printf.o
+ .glue_7t       0x00004e50        0x0 ../mini-libc/libc_asm.o
+ .glue_7t       0x00004e50        0x0 ../mini-libc/memcpy.o
+
+.data           0x00004e50        0x0
+ *(.data)
+ .data          0x00004e50        0x0 hello-world.o
+ .data          0x00004e50        0x0 start.o
+ .data          0x00004e50        0x0 ../mini-libc/printf.o
+ .data          0x00004e50        0x0 ../mini-libc/libc_asm.o
+ .data          0x00004e50        0x0 ../mini-libc/memcpy.o
+
+.rodata
+ *(.rodata)
+
+.rodata.str1.4  0x00004e50       0x34
+ .rodata.str1.4
+                0x00004e50       0x2a hello-world.o
+                                 0x2c (size before relaxing)
+ *fill*         0x00004e7a        0x2 00
+ .rodata.str1.4
+                0x00004e7c        0x8 ../mini-libc/printf.o
+
+.bss            0x00004e84        0x4
+ *(.bss)
+ .bss           0x00004e84        0x0 hello-world.o
+ .bss           0x00004e84        0x4 start.o
+ .bss           0x00004e88        0x0 ../mini-libc/printf.o
+ .bss           0x00004e88        0x0 ../mini-libc/libc_asm.o
+ .bss           0x00004e88        0x0 ../mini-libc/memcpy.o
+
+.stack          0x00004e88        0x0
+                0x00004e88                __stack = .
+LOAD hello-world.o
+LOAD start.o
+LOAD ../mini-libc/printf.o
+LOAD ../mini-libc/libc_asm.o
+LOAD ../mini-libc/memcpy.o
+OUTPUT(hello-world.elf elf32-bigarm)
+
+.comment        0x00000000       0x51
+ .comment       0x00000000       0x1b hello-world.o
+ .comment       0x0000001b       0x1b ../mini-libc/printf.o
+ .comment       0x00000036       0x1b ../mini-libc/memcpy.o

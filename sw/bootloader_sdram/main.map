@@ -1,0 +1,268 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ROM              0x00010000         0x00004000         xr
+RAM              0x00000000         0x00008000         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD build/storm_boot_startup_code.o
+LOAD main.o
+LOAD d:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/be/nofmult\libc.a
+LOAD d:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/be/nofmult\libc.a
+LOAD d:/winarm/bin/../lib/gcc/arm-elf/4.1.1/be/nofmult\libgcc.a
+START GROUP
+LOAD d:/winarm/bin/../lib/gcc/arm-elf/4.1.1/be/nofmult\libgcc.a
+LOAD d:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/be/nofmult\libg.a
+LOAD d:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/be/nofmult\libc.a
+END GROUP
+                0x00002000                STACK_SIZE = 0x2000
+
+.text           0x00010000     0x1e2c
+ *storm_startup_code.o(.text)
+ *(.text)
+ .text          0x00010000       0x70 build/storm_boot_startup_code.o
+                0x00010064                reset
+                0x00010000                _boot
+                0x00010020                _mainCRTStartup
+                0x00010064                abort
+                0x00010020                _start
+                0x00010064                _reset
+                0x00010064                exit
+                0x00010058                _jump_to_program
+                0x00010020                start
+ .text          0x00010070     0x1114 main.o
+                0x00010280                io_spi0_disable
+                0x00010094                io_set_gpio0_pin
+                0x000100d4                io_toggle_gpio0_pin
+                0x000106b0                string_cmpc
+                0x000100f0                io_set_gpio0_port
+                0x00010784                print_intro
+                0x000100b0                io_clr_gpio0_pin
+                0x000102a4                io_i2c0_speed
+                0x00010220                io_spi0_speed
+                0x00010648                get_adc
+                0x00010564                uart0_scanf
+                0x00010264                io_spi0_enable
+                0x00011164                io_enable_xint
+                0x0001022c                io_spi0_trans
+                0x000102d0                io_i2c0_byte_transfer
+                0x000104d8                set_syscpreg
+                0x000105b4                uart0_print_buffer
+                0x0001052c                uart0_printf
+                0x000106f8                hex_string_to_long
+                0x000107b0                main
+                0x000105d8                long_to_hex_string
+                0x000100fc                io_set_pwm
+                0x00010688                delay
+                0x00010400                get_syscpreg
+                0x000101c8                io_uart0_read_byte
+                0x000101fc                io_spi0_config
+                0x000101e0                io_uart0_send_byte
+                0x00010764                qbytes_to_long
+                0x00011174                io_disable_xint
+                0x00010070                io_read_gpio0_pin
+                0x00010088                io_read_gpio0_port
+                0x00010178                io_get_pwm
+ *(.rodata)
+ *(.rodata*)
+ .rodata.str1.4
+                0x00011184      0xca8 main.o
+                                0xcb4 (size before relaxing)
+ *(.glue_7)
+ .glue_7        0x00011e2c        0x0 build/storm_boot_startup_code.o
+ .glue_7        0x00011e2c        0x0 main.o
+ *(.glue_7t)
+ .glue_7t       0x00011e2c        0x0 build/storm_boot_startup_code.o
+ .glue_7t       0x00011e2c        0x0 main.o
+                0x00011e2c                . = ALIGN (0x4)
+
+.ctors          0x00011e2c        0x0
+                0x00011e2c                PROVIDE (__ctors_start__, .)
+ *(SORT(.ctors.*))
+ *(.ctors)
+                0x00011e2c                PROVIDE (__ctors_end__, .)
+
+.dtors          0x00011e2c        0x0
+                0x00011e2c                PROVIDE (__dtors_start__, .)
+ *(SORT(.dtors.*))
+ *(.dtors)
+                0x00011e2c                PROVIDE (__dtors_end__, .)
+                0x00011e2c                . = ALIGN (0x4)
+                0x00011e2c                _etext = .
+                0x00011e2c                PROVIDE (etext, .)
+
+.data           0x00000000        0x0 load address 0x00011e2c
+                0x00000000                _data = .
+ *(.data)
+ .data          0x00000000        0x0 build/storm_boot_startup_code.o
+ .data          0x00000000        0x0 main.o
+                0x00000000                . = ALIGN (0x4)
+                0x00000000                _edata = .
+                0x00000000                PROVIDE (edata, .)
+
+.bss            0x00000000        0x0
+                0x00000000                __bss_start = .
+                0x00000000                __bss_start__ = .
+ *(.bss)
+ .bss           0x00000000        0x0 build/storm_boot_startup_code.o
+ .bss           0x00000000        0x0 main.o
+ *(COMMON)
+                0x00000000                . = ALIGN (0x4)
+                0x00000000                . = ALIGN (0x4)
+                0x00000000                __bss_end__ = .
+                0x00000000                PROVIDE (__bss_end, .)
+
+.stack          0x00000000     0x2000
+                0x00000000                . = ALIGN (0x100)
+                0x00002000                . = (. + STACK_SIZE)
+ *fill*         0x00000000     0x2000 00
+                0x00002000                PROVIDE (_stack, .)
+                0x00002000                _end = .
+                0x00002000                PROVIDE (end, .)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x1b
+ *(.comment)
+ .comment       0x00000000       0x1b main.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0x40
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 build/storm_boot_startup_code.o
+ .debug_aranges
+                0x00000020       0x20 main.o
+
+.debug_pubnames
+                0x00000000      0x26e
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000      0x26e main.o
+
+.debug_info     0x00000000      0x92c
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000       0x70 build/storm_boot_startup_code.o
+ .debug_info    0x00000070      0x8bc main.o
+
+.debug_abbrev   0x00000000      0x281
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0x14 build/storm_boot_startup_code.o
+ .debug_abbrev  0x00000014      0x26d main.o
+
+.debug_line     0x00000000      0x39b
+ *(.debug_line)
+ .debug_line    0x00000000       0x6e build/storm_boot_startup_code.o
+ .debug_line    0x0000006e      0x32d main.o
+
+.debug_frame    0x00000000      0x280
+ *(.debug_frame)
+ .debug_frame   0x00000000      0x280 main.o
+
+.debug_str      0x00000000      0x37a
+ *(.debug_str)
+ .debug_str     0x00000000      0x37a main.o
+                                0x3b5 (size before relaxing)
+
+.debug_loc      0x00000000      0xa1e
+ *(.debug_loc)
+ .debug_loc     0x00000000      0xa1e main.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+OUTPUT(main.elf elf32-bigarm)
+
+Cross Reference Table
+
+Symbol                                            File
+__bss_end__                                       build/storm_boot_startup_code.o
+__bss_start                                       build/storm_boot_startup_code.o
+_boot                                             build/storm_boot_startup_code.o
+_data                                             build/storm_boot_startup_code.o
+_edata                                            build/storm_boot_startup_code.o
+_etext                                            build/storm_boot_startup_code.o
+_jump_to_program                                  build/storm_boot_startup_code.o
+                                                  main.o
+_mainCRTStartup                                   build/storm_boot_startup_code.o
+_reset                                            build/storm_boot_startup_code.o
+_stack                                            build/storm_boot_startup_code.o
+_start                                            build/storm_boot_startup_code.o
+abort                                             build/storm_boot_startup_code.o
+delay                                             main.o
+exit                                              build/storm_boot_startup_code.o
+get_adc                                           main.o
+get_syscpreg                                      main.o
+hex_string_to_long                                main.o
+io_clr_gpio0_pin                                  main.o
+io_disable_xint                                   main.o
+io_enable_xint                                    main.o
+io_get_pwm                                        main.o
+io_i2c0_byte_transfer                             main.o
+io_i2c0_speed                                     main.o
+io_read_gpio0_pin                                 main.o
+io_read_gpio0_port                                main.o
+io_set_gpio0_pin                                  main.o
+io_set_gpio0_port                                 main.o
+io_set_pwm                                        main.o
+io_spi0_config                                    main.o
+io_spi0_disable                                   main.o
+io_spi0_enable                                    main.o
+io_spi0_speed                                     main.o
+io_spi0_trans                                     main.o
+io_toggle_gpio0_pin                               main.o
+io_uart0_read_byte                                main.o
+io_uart0_send_byte                                main.o
+long_to_hex_string                                main.o
+main                                              main.o
+                                                  build/storm_boot_startup_code.o
+print_intro                                       main.o
+qbytes_to_long                                    main.o
+reset                                             build/storm_boot_startup_code.o
+set_syscpreg                                      main.o
+start                                             build/storm_boot_startup_code.o
+string_cmpc                                       main.o
+uart0_print_buffer                                main.o
+uart0_printf                                      main.o
+uart0_scanf                                       main.o

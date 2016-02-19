@@ -1,0 +1,9 @@
+i = 30768
+endcnt = 32760
+;endcnt = 16
+while i< endcnt
+  
+  sprintf 'r %x' i
+  sendln inputstr
+  i = i +4
+endwhile

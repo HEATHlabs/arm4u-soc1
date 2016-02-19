@@ -1,0 +1,238 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+SHT_NAME            0x50              elfsplitter.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ROM              0x00010000         0x00004000         xr
+RAM              0x00000000         0x00008000         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00002000                STACK_SIZE = 0x2000
+TARGET(elf32-bigarm)
+
+.text           0x00010000     0x21ec
+ start*(.text)
+ .text          0x00010000      0x1a4 start.o
+                0x000100b0                _core_status
+                0x00010068                _jump_to_program
+                0x00010000                start
+ *(.text)
+ .text          0x000101a4      0x808 boot-loader.o
+                0x000102a4                get_address_data
+                0x000101a4                get_hex
+                0x000102f8                print_spaces
+                0x0001031c                print_help
+                0x0001046c                load_run
+                0x0001043c                printm
+                0x00010814                main
+                0x000105a4                parse
+ .text          0x000109ac       0x5c crc16.o
+                0x000109ac                crc16_ccitt
+ .text          0x00010a08      0x2b0 xmodem.o
+                0x00010a20                xmodemReceive
+ .text          0x00010cb8      0x1ec elfsplitter.o
+                0x00010cb8                elfsplitter
+ .text          0x00010ea4      0x43c ../mini-libc/printf.o
+                0x000110c8                print
+                0x00011274                printf
+                0x00010f8c                printi
+                0x00010ec8                prints
+                0x00010ea4                outbyte
+                0x000112ac                sprintf
+ .text          0x000112e0      0x480 ../mini-libc/libc_asm.o
+                0x000113d0                strcpy
+                0x000116d8                malloc
+                0x000112fc                _outbyte
+                0x0001134c                __aeabi_idiv
+                0x00011710                strncmp
+                0x000116ec                strncpy
+                0x0001131c                _inbyte
+                0x000114d4                strcmp
+                0x000112ec                _testpass
+                0x000116cc                init_malloc
+                0x0001134c                _div
+                0x000112e0                _testfail
+ .text          0x00011760      0x53c ../mini-libc/memcpy.o
+                0x00011760                memcpy
+ *(.rodata)
+ .rodata        0x00011c9c      0x200 crc16.o
+ *(.rodata*)
+ .rodata.str1.4
+                0x00011e9c      0x27b boot-loader.o
+                                0x280 (size before relaxing)
+ *fill*         0x00012117        0x1 00
+ .rodata.str1.4
+                0x00012118       0xcc elfsplitter.o
+ .rodata.str1.4
+                0x000121e4        0x8 ../mini-libc/printf.o
+ *(.glue_7)
+ .glue_7        0x000121ec        0x0 boot-loader.o
+ .glue_7        0x000121ec        0x0 start.o
+ .glue_7        0x000121ec        0x0 crc16.o
+ .glue_7        0x000121ec        0x0 xmodem.o
+ .glue_7        0x000121ec        0x0 elfsplitter.o
+ .glue_7        0x000121ec        0x0 ../mini-libc/printf.o
+ .glue_7        0x000121ec        0x0 ../mini-libc/libc_asm.o
+ .glue_7        0x000121ec        0x0 ../mini-libc/memcpy.o
+ *(.glue_7t)
+ .glue_7t       0x000121ec        0x0 boot-loader.o
+ .glue_7t       0x000121ec        0x0 start.o
+ .glue_7t       0x000121ec        0x0 crc16.o
+ .glue_7t       0x000121ec        0x0 xmodem.o
+ .glue_7t       0x000121ec        0x0 elfsplitter.o
+ .glue_7t       0x000121ec        0x0 ../mini-libc/printf.o
+ .glue_7t       0x000121ec        0x0 ../mini-libc/libc_asm.o
+ .glue_7t       0x000121ec        0x0 ../mini-libc/memcpy.o
+                0x000121ec                . = ALIGN (0x4)
+
+.ctors          0x000121ec        0x0
+                0x000121ec                PROVIDE (__ctors_start__, .)
+ *(SORT(.ctors.*))
+ *(.ctors)
+                0x000121ec                PROVIDE (__ctors_end__, .)
+
+.dtors          0x000121ec        0x0
+                0x000121ec                PROVIDE (__dtors_start__, .)
+ *(SORT(.dtors.*))
+ *(.dtors)
+                0x000121ec                PROVIDE (__dtors_end__, .)
+                0x000121ec                . = ALIGN (0x4)
+                0x000121ec                _etext = .
+                0x000121ec                PROVIDE (etext, .)
+
+.data           0x00000000        0x0 load address 0x000121ec
+                0x00000000                _data = .
+ *(.data)
+ .data          0x00000000        0x0 boot-loader.o
+ .data          0x00000000        0x0 start.o
+ .data          0x00000000        0x0 crc16.o
+ .data          0x00000000        0x0 xmodem.o
+ .data          0x00000000        0x0 elfsplitter.o
+ .data          0x00000000        0x0 ../mini-libc/printf.o
+ .data          0x00000000        0x0 ../mini-libc/libc_asm.o
+ .data          0x00000000        0x0 ../mini-libc/memcpy.o
+                0x00000000                . = ALIGN (0x4)
+                0x00000000                _edata = .
+                0x00000000                PROVIDE (edata, .)
+
+.bss            0x00000000       0x50
+                0x00000000                __bss_start = .
+                0x00000000                __bss_start__ = .
+ *(.bss)
+ .bss           0x00000000        0x0 boot-loader.o
+ .bss           0x00000000        0x0 start.o
+ .bss           0x00000000        0x0 crc16.o
+ .bss           0x00000000        0x0 xmodem.o
+ .bss           0x00000000        0x0 elfsplitter.o
+ .bss           0x00000000        0x0 ../mini-libc/printf.o
+ .bss           0x00000000        0x0 ../mini-libc/libc_asm.o
+ .bss           0x00000000        0x0 ../mini-libc/memcpy.o
+ *(COMMON)
+ COMMON         0x00000000       0x50 elfsplitter.o
+                0x00000000                SHT_NAME
+                0x00000050                . = ALIGN (0x4)
+                0x00000050                . = ALIGN (0x4)
+                0x00000050                __bss_end__ = .
+                0x00000050                PROVIDE (__bss_end, .)
+
+.stack          0x00000050     0x20b0
+                0x00000100                . = ALIGN (0x100)
+ *fill*         0x00000050       0xb0 00
+                0x00002100                . = (. + STACK_SIZE)
+ *fill*         0x00000100     0x2000 00
+                0x00002100                PROVIDE (_stack, .)
+                0x00002100                _end = .
+                0x00002100                PROVIDE (end, .)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0xa2
+ *(.comment)
+ .comment       0x00000000       0x1b boot-loader.o
+ .comment       0x0000001b       0x1b crc16.o
+ .comment       0x00000036       0x1b xmodem.o
+ .comment       0x00000051       0x1b elfsplitter.o
+ .comment       0x0000006c       0x1b ../mini-libc/printf.o
+ .comment       0x00000087       0x1b ../mini-libc/memcpy.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info .gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+LOAD boot-loader.o
+LOAD start.o
+LOAD crc16.o
+LOAD xmodem.o
+LOAD elfsplitter.o
+LOAD ../mini-libc/printf.o
+LOAD ../mini-libc/libc_asm.o
+LOAD ../mini-libc/memcpy.o
+OUTPUT(boot-loader.elf elf32-bigarm)

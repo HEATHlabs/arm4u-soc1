@@ -1,0 +1,31 @@
+Hi, you can directly connect a wishbone slave to avalon bus with the sopc builder. 
+As an example, see the integration of i2c core into nios processor: 
+1. Within SOPC builder, generate interface to user logic. 
+2. Select bus interface type: avalon register slave. 
+3. Add "i2c_master_top.v" design file. 
+4. Read port list from file. 
+5. Connect the signals as follow: 
+	wb_adr_i address 
+	wb_dat_i writedata 
+	wb_dat_o readdata 
+	wb_we_i write 
+	wb_stb_i chipselect 
+	wb_cyc_i chipselect 
+	wb_inta_o irq 
+	wb_clk_i clk 
+	wb_ack_o waitrequest_n 
+	wb_rst_i always0 
+	
+	arst_i reset_n 
+	scl_pad_i export 
+	scl_pad_o export 
+	scl_padoen_o 
+	export sda_pad_i 
+	export sda_pad_o 
+	export sda_padoen_o export 
+6. Under timing tab, leave the setup, wait and hold settings at 0 cycles.
+
+Then you create a component, and simply map each port in the component builder to 
+the equivalent Avalon signal. The only one that isn't perhaps _immediately_ 
+obvious is that ACK <=> waitrequest_n and BTW you map *both* cyc and stb to chipselect 
+(and ignore the warning).

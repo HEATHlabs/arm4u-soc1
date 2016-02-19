@@ -1,0 +1,886 @@
+   1              		.file	"boot-loader.c"
+   2              		.section	.rodata.str1.4,"aMS",%progbits,1
+   3              		.align	2
+   4              	.LC0:
+   5 0000 2573200A 		.ascii	"%s \012\000"
+   5      00
+   6 0005 000000   		.align	2
+   7              	.LC1:
+   8 0008 61646472 		.ascii	"addr %x \012\000"
+   8      20257820 
+   8      0A00
+   9 0012 0000     		.align	2
+  10              	.LC2:
+  11 0014 63706F73 		.ascii	"cpos:%x \000"
+  11      3A257820 
+  11      00
+  12 001d 000000   		.align	2
+  13              	.LC3:
+  14 0020 61646472 		.ascii	"addr:%x\012\000"
+  14      3A25780A 
+  14      00
+  15 0029 000000   		.align	2
+  16              	.LC4:
+  17 002c 6C656E20 		.ascii	"len %i \012\000"
+  17      2569200A 
+  17      00
+  18              		.text
+  19              		.align	2
+  20              		.global	get_hex
+  22              	get_hex:
+  23              		@ args = 0, pretend = 0, frame = 4
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25 0000 E92D4FF0 		stmfd	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  26 0004 E1A0B000 		mov	fp, r0
+  27 0008 E1A0A002 		mov	sl, r2
+  28 000c E24DD004 		sub	sp, sp, #4
+  29 0010 E1A08001 		mov	r8, r1
+  30 0014 E59F0104 		ldr	r0, .L15
+  31 0018 E1A0100B 		mov	r1, fp
+  32 001c E1A07003 		mov	r7, r3
+  33 0020 EBFFFFFE 		bl	printf
+  34 0024 E59F00F8 		ldr	r0, .L15+4
+  35 0028 E1A0100A 		mov	r1, sl
+  36 002c EBFFFFFE 		bl	printf
+  37 0030 E3A03000 		mov	r3, #0
+  38 0034 E58A3000 		str	r3, [sl, #0]
+  39 0038 E1A05003 		mov	r5, r3
+  40 003c E1A09008 		mov	r9, r8
+  41 0040 E1A06003 		mov	r6, r3
+  42              	.L2:
+  43 0044 E08B3006 		add	r3, fp, r6
+  44 0048 E7D82003 		ldrb	r2, [r8, r3]	@ zero_extendqisi2
+  45 004c E2423030 		sub	r3, r2, #48
+  46 0050 E3530009 		cmp	r3, #9
+  47 0054 E0821205 		add	r1, r2, r5, asl #4
+  48 0058 E3A03000 		mov	r3, #0
+  49 005c E2420041 		sub	r0, r2, #65
+  50 0060 E58D3000 		str	r3, [sp, #0]
+  51 0064 92415030 		subls	r5, r1, #48
+  52 0068 9A00000E 		bls	.L5
+  53 006c E3500005 		cmp	r0, #5
+  54 0070 E0823205 		add	r3, r2, r5, asl #4
+  55 0074 E3A00000 		mov	r0, #0
+  56 0078 E2421061 		sub	r1, r2, #97
+  57 007c E58D0000 		str	r0, [sp, #0]
+  58 0080 92435037 		subls	r5, r3, #55
+  59 0084 9A000007 		bls	.L5
+  60 0088 E3510005 		cmp	r1, #5
+  61 008c E0823205 		add	r3, r2, r5, asl #4
+  62 0090 E3A02000 		mov	r2, #0
+  63 0094 83A03001 		movhi	r3, #1
+  64 0098 E58D2000 		str	r2, [sp, #0]
+  65 009c 85876000 		strhi	r6, [r7, #0]
+  66 00a0 858D3000 		strhi	r3, [sp, #0]
+  67 00a4 92435057 		subls	r5, r3, #87
+  68              	.L5:
+  69 00a8 E2894001 		add	r4, r9, #1
+  70 00ac E3560008 		cmp	r6, #8
+  71 00b0 E59F0070 		ldr	r0, .L15+8
+  72 00b4 E1A01004 		mov	r1, r4
+  73 00b8 E1A09004 		mov	r9, r4
+  74 00bc 1A000005 		bne	.L10
+  75 00c0 E5876000 		str	r6, [r7, #0]
+  76 00c4 EBFFFFFE 		bl	printf
+  77 00c8 E1A01005 		mov	r1, r5
+  78 00cc E59F0058 		ldr	r0, .L15+12
+  79 00d0 EBFFFFFE 		bl	printf
+  80 00d4 EA000007 		b	.L12
+  81              	.L10:
+  82 00d8 EBFFFFFE 		bl	printf
+  83 00dc E59F0048 		ldr	r0, .L15+12
+  84 00e0 E1A01005 		mov	r1, r5
+  85 00e4 EBFFFFFE 		bl	printf
+  86 00e8 E59D0000 		ldr	r0, [sp, #0]
+  87 00ec E3500000 		cmp	r0, #0
+  88 00f0 E2866001 		add	r6, r6, #1
+  89 00f4 0AFFFFD2 		beq	.L2
+  90              	.L12:
+  91 00f8 E5971000 		ldr	r1, [r7, #0]
+  92 00fc E59F002C 		ldr	r0, .L15+16
+  93 0100 EBFFFFFE 		bl	printf
+  94 0104 E2880001 		add	r0, r8, #1
+  95 0108 E1540000 		cmp	r4, r0
+  96 010c D3A00000 		movle	r0, #0
+  97 0110 C3A00001 		movgt	r0, #1
+  98 0114 E58A5000 		str	r5, [sl, #0]
+  99 0118 E28DD004 		add	sp, sp, #4
+ 100 011c E8BD8FF0 		ldmfd	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 101              	.L16:
+ 102              		.align	2
+ 103              	.L15:
+ 104 0120 00000000 		.word	.LC0
+ 105 0124 00000008 		.word	.LC1
+ 106 0128 00000014 		.word	.LC2
+ 107 012c 00000020 		.word	.LC3
+ 108 0130 0000002C 		.word	.LC4
+ 110              		.align	2
+ 111              		.global	get_address_data
+ 113              	get_address_data:
+ 114              		@ args = 0, pretend = 0, frame = 4
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116 0134 E92D4070 		stmfd	sp!, {r4, r5, r6, lr}
+ 117 0138 E24DD004 		sub	sp, sp, #4
+ 118 013c E1A06002 		mov	r6, r2
+ 119 0140 E1A0300D 		mov	r3, sp
+ 120 0144 E1A02001 		mov	r2, r1
+ 121 0148 E3A01002 		mov	r1, #2
+ 122 014c E1A04000 		mov	r4, r0
+ 123 0150 EBFFFFFE 		bl	get_hex
+ 124 0154 E2501000 		subs	r1, r0, #0
+ 125 0158 E1A0500D 		mov	r5, sp
+ 126 015c E1A02006 		mov	r2, r6
+ 127 0160 E1A00004 		mov	r0, r4
+ 128 0164 E1A0300D 		mov	r3, sp
+ 129 0168 0A000003 		beq	.L18
+ 130 016c E59D1000 		ldr	r1, [sp, #0]
+ 131 0170 E2811003 		add	r1, r1, #3
+ 132 0174 EBFFFFFE 		bl	get_hex
+ 133 0178 E1A01000 		mov	r1, r0
+ 134              	.L18:
+ 135 017c E1A00001 		mov	r0, r1
+ 136 0180 E28DD004 		add	sp, sp, #4
+ 137 0184 E8BD8070 		ldmfd	sp!, {r4, r5, r6, pc}
+ 139              		.section	.rodata.str1.4
+ 140 0035 000000   		.align	2
+ 141              	.LC5:
+ 142 0038 2000     		.ascii	" \000"
+ 143              		.text
+ 144              		.align	2
+ 145              		.global	print_spaces
+ 147              	print_spaces:
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 0, uses_anonymous_args = 0
+ 150 0188 E92D4010 		stmfd	sp!, {r4, lr}
+ 151 018c E1A04000 		mov	r4, r0
+ 152 0190 EA000000 		b	.L22
+ 153              	.L23:
+ 154 0194 EBFFFFFE 		bl	printf
+ 155              	.L22:
+ 156 0198 E2544001 		subs	r4, r4, #1
+ 157 019c E59F0004 		ldr	r0, .L26
+ 158 01a0 2AFFFFFB 		bcs	.L23
+ 159 01a4 E8BD8010 		ldmfd	sp!, {r4, pc}
+ 160              	.L27:
+ 161              		.align	2
+ 162              	.L26:
+ 163 01a8 00000038 		.word	.LC5
+ 165              		.section	.rodata.str1.4
+ 166 003a 0000     		.align	2
+ 167              	.LC6:
+ 168 003c 436F6D6D 		.ascii	"Commands\012\000"
+ 168      616E6473 
+ 168      0A00
+ 169 0046 0000     		.align	2
+ 170              	.LC7:
+ 171 0048 6C00     		.ascii	"l\000"
+ 172 004a 0000     		.align	2
+ 173              	.LC8:
+ 174 004c 3A204C6F 		.ascii	": Load elf file\012\000"
+ 174      61642065 
+ 174      6C662066 
+ 174      696C650A 
+ 174      00
+ 175 005d 000000   		.align	2
+ 176              	.LC9:
+ 177 0060 62203C61 		.ascii	"b <address>\000"
+ 177      64647265 
+ 177      73733E00 
+ 178              		.align	2
+ 179              	.LC10:
+ 180 006c 3A204C6F 		.ascii	": Load binary file to <address>\012\000"
+ 180      61642062 
+ 180      696E6172 
+ 180      79206669 
+ 180      6C652074 
+ 181 008d 000000   		.align	2
+ 182              	.LC11:
+ 183 0090 64203C73 		.ascii	"d <start address> <num bytes> : Dump mem\012\000"
+ 183      74617274 
+ 183      20616464 
+ 183      72657373 
+ 183      3E203C6E 
+ 184 00ba 0000     		.align	2
+ 185              	.LC12:
+ 186 00bc 6800     		.ascii	"h\000"
+ 187 00be 0000     		.align	2
+ 188              	.LC13:
+ 189 00c0 3A205072 		.ascii	": Print help message\012\000"
+ 189      696E7420 
+ 189      68656C70 
+ 189      206D6573 
+ 189      73616765 
+ 190 00d6 0000     		.align	2
+ 191              	.LC14:
+ 192 00d8 6A203C61 		.ascii	"j <address>\000"
+ 192      64647265 
+ 192      73733E00 
+ 193              		.align	2
+ 194              	.LC15:
+ 195 00e4 3A204578 		.ascii	": Execute loaded elf, jumping to <address>\012\000"
+ 195      65637574 
+ 195      65206C6F 
+ 195      61646564 
+ 195      20656C66 
+ 196              		.align	2
+ 197              	.LC16:
+ 198 0110 70203C61 		.ascii	"p <address>\000"
+ 198      64647265 
+ 198      73733E00 
+ 199              		.align	2
+ 200              	.LC17:
+ 201 011c 3A205072 		.ascii	": Print ascii mem until first 0\012\000"
+ 201      696E7420 
+ 201      61736369 
+ 201      69206D65 
+ 201      6D20756E 
+ 202 013d 000000   		.align	2
+ 203              	.LC18:
+ 204 0140 72203C61 		.ascii	"r <address>\000"
+ 204      64647265 
+ 204      73733E00 
+ 205              		.align	2
+ 206              	.LC19:
+ 207 014c 3A205265 		.ascii	": Read mem\012\000"
+ 207      6164206D 
+ 207      656D0A00 
+ 208              		.align	2
+ 209              	.LC20:
+ 210 0158 7300     		.ascii	"s\000"
+ 211 015a 0000     		.align	2
+ 212              	.LC21:
+ 213 015c 3A20436F 		.ascii	": Core status\012\000"
+ 213      72652073 
+ 213      74617475 
+ 213      730A00
+ 214 016b 00       		.align	2
+ 215              	.LC22:
+ 216 016c 77203C61 		.ascii	"w <address> <value>\000"
+ 216      64647265 
+ 216      73733E20 
+ 216      3C76616C 
+ 216      75653E00 
+ 217              		.align	2
+ 218              	.LC23:
+ 219 0180 3A205772 		.ascii	": Write mem\012\000"
+ 219      69746520 
+ 219      6D656D0A 
+ 219      00
+ 220              		.text
+ 221              		.align	2
+ 222              		.global	print_help
+ 224              	print_help:
+ 225              		@ args = 0, pretend = 0, frame = 0
+ 226              		@ frame_needed = 0, uses_anonymous_args = 0
+ 227 01ac E52DE004 		str	lr, [sp, #-4]!
+ 228 01b0 E59F00CC 		ldr	r0, .L30
+ 229 01b4 EBFFFFFE 		bl	printf
+ 230 01b8 E59F00C8 		ldr	r0, .L30+4
+ 231 01bc EBFFFFFE 		bl	printf
+ 232 01c0 E3A0001D 		mov	r0, #29
+ 233 01c4 EBFFFFFE 		bl	print_spaces
+ 234 01c8 E59F00BC 		ldr	r0, .L30+8
+ 235 01cc EBFFFFFE 		bl	printf
+ 236 01d0 E59F00B8 		ldr	r0, .L30+12
+ 237 01d4 EBFFFFFE 		bl	printf
+ 238 01d8 E3A00013 		mov	r0, #19
+ 239 01dc EBFFFFFE 		bl	print_spaces
+ 240 01e0 E59F00AC 		ldr	r0, .L30+16
+ 241 01e4 EBFFFFFE 		bl	printf
+ 242 01e8 E59F00A8 		ldr	r0, .L30+20
+ 243 01ec EBFFFFFE 		bl	printf
+ 244 01f0 E59F00A4 		ldr	r0, .L30+24
+ 245 01f4 EBFFFFFE 		bl	printf
+ 246 01f8 E3A0001D 		mov	r0, #29
+ 247 01fc EBFFFFFE 		bl	print_spaces
+ 248 0200 E59F0098 		ldr	r0, .L30+28
+ 249 0204 EBFFFFFE 		bl	printf
+ 250 0208 E59F0094 		ldr	r0, .L30+32
+ 251 020c EBFFFFFE 		bl	printf
+ 252 0210 E3A00013 		mov	r0, #19
+ 253 0214 EBFFFFFE 		bl	print_spaces
+ 254 0218 E59F0088 		ldr	r0, .L30+36
+ 255 021c EBFFFFFE 		bl	printf
+ 256 0220 E59F0084 		ldr	r0, .L30+40
+ 257 0224 EBFFFFFE 		bl	printf
+ 258 0228 E3A00013 		mov	r0, #19
+ 259 022c EBFFFFFE 		bl	print_spaces
+ 260 0230 E59F0078 		ldr	r0, .L30+44
+ 261 0234 EBFFFFFE 		bl	printf
+ 262 0238 E59F0074 		ldr	r0, .L30+48
+ 263 023c EBFFFFFE 		bl	printf
+ 264 0240 E3A00013 		mov	r0, #19
+ 265 0244 EBFFFFFE 		bl	print_spaces
+ 266 0248 E59F0068 		ldr	r0, .L30+52
+ 267 024c EBFFFFFE 		bl	printf
+ 268 0250 E59F0064 		ldr	r0, .L30+56
+ 269 0254 EBFFFFFE 		bl	printf
+ 270 0258 E3A0001D 		mov	r0, #29
+ 271 025c EBFFFFFE 		bl	print_spaces
+ 272 0260 E59F0058 		ldr	r0, .L30+60
+ 273 0264 EBFFFFFE 		bl	printf
+ 274 0268 E59F0054 		ldr	r0, .L30+64
+ 275 026c EBFFFFFE 		bl	printf
+ 276 0270 E3A0000B 		mov	r0, #11
+ 277 0274 EBFFFFFE 		bl	print_spaces
+ 278 0278 E59F0048 		ldr	r0, .L30+68
+ 279 027c E49DE004 		ldr	lr, [sp], #4
+ 280 0280 EAFFFFFE 		b	printf
+ 281              	.L31:
+ 282              		.align	2
+ 283              	.L30:
+ 284 0284 0000003C 		.word	.LC6
+ 285 0288 00000048 		.word	.LC7
+ 286 028c 0000004C 		.word	.LC8
+ 287 0290 00000060 		.word	.LC9
+ 288 0294 0000006C 		.word	.LC10
+ 289 0298 00000090 		.word	.LC11
+ 290 029c 000000BC 		.word	.LC12
+ 291 02a0 000000C0 		.word	.LC13
+ 292 02a4 000000D8 		.word	.LC14
+ 293 02a8 000000E4 		.word	.LC15
+ 294 02ac 00000110 		.word	.LC16
+ 295 02b0 0000011C 		.word	.LC17
+ 296 02b4 00000140 		.word	.LC18
+ 297 02b8 0000014C 		.word	.LC19
+ 298 02bc 00000158 		.word	.LC20
+ 299 02c0 0000015C 		.word	.LC21
+ 300 02c4 0000016C 		.word	.LC22
+ 301 02c8 00000180 		.word	.LC23
+ 303              		.section	.rodata.str1.4
+ 304 018d 000000   		.align	2
+ 305              	.LC24:
+ 306 0190 6D656D20 		.ascii	"mem 0x%08x = 0x%08x\012\000"
+ 306      30782530 
+ 306      3878203D 
+ 306      20307825 
+ 306      3038780A 
+ 307              		.text
+ 308              		.align	2
+ 309              		.global	printm
+ 311              	printm:
+ 312              		@ args = 0, pretend = 0, frame = 0
+ 313              		@ frame_needed = 0, uses_anonymous_args = 0
+ 314              		@ link register save eliminated.
+ 315 02cc E1A01000 		mov	r1, r0
+ 316 02d0 E5912000 		ldr	r2, [r1, #0]
+ 317 02d4 E59F0000 		ldr	r0, .L34
+ 318              		@ lr needed for prologue
+ 319 02d8 EAFFFFFE 		b	printf
+ 320              	.L35:
+ 321              		.align	2
+ 322              	.L34:
+ 323 02dc 00000190 		.word	.LC24
+ 325              		.section	.rodata.str1.4
+ 326 01a5 000000   		.align	2
+ 327              	.LC25:
+ 328 01a8 25730A00 		.ascii	"%s\012\000"
+ 329              		.align	2
+ 330              	.LC26:
+ 331 01ac 53656E64 		.ascii	"Send file w/ 1K Xmodem protocol from terminal emula"
+ 331      2066696C 
+ 331      6520772F 
+ 331      20314B20 
+ 331      586D6F64 
+ 332 01df 746F7220 		.ascii	"tor now...\000"
+ 332      6E6F772E 
+ 332      2E2E00
+ 333 01ea 0000     		.align	2
+ 334              	.LC27:
+ 335 01ec 586D6F64 		.ascii	"Xmodem error file size 0x%x \012\000"
+ 335      656D2065 
+ 335      72726F72 
+ 335      2066696C 
+ 335      65207369 
+ 336 020a 0000     		.align	2
+ 337              	.LC28:
+ 338 020c 0A656C66 		.ascii	"\012elf split\012\000"
+ 338      2073706C 
+ 338      69740A00 
+ 339              		.align	2
+ 340              	.LC29:
+ 341 0218 6A203078 		.ascii	"j 0x%08x\012\000"
+ 341      25303878 
+ 341      0A00
+ 342 0222 0000     		.align	2
+ 343              	.LC30:
+ 344 0224 0A00     		.ascii	"\012\000"
+ 345              		.text
+ 346              		.align	2
+ 347              		.global	load_run
+ 349              	load_run:
+ 350              		@ args = 0, pretend = 0, frame = 0
+ 351              		@ frame_needed = 0, uses_anonymous_args = 0
+ 352 02e0 E2400001 		sub	r0, r0, #1
+ 353 02e4 E92D4010 		stmfd	sp!, {r4, lr}
+ 354 02e8 E1A04001 		mov	r4, r1
+ 355 02ec E3500004 		cmp	r0, #4
+ 356 02f0 979FF100 		ldrls	pc, [pc, r0, asl #2]
+ 357 02f4 EA000039 		b	.L37
+ 358              		.p2align 2
+ 359              	.L43:
+ 360 02f8 0000030C 		.word	.L38
+ 361 02fc 0000034C 		.word	.L39
+ 362 0300 00000360 		.word	.L40
+ 363 0304 0000038C 		.word	.L41
+ 364 0308 000003B0 		.word	.L42
+ 365              	.L38:
+ 366 030c E59F10EC 		ldr	r1, .L52
+ 367 0310 E59F00EC 		ldr	r0, .L52+4
+ 368 0314 EBFFFFFE 		bl	printf
+ 369 0318 E3A01602 		mov	r1, #2097152
+ 370 031c E3A00505 		mov	r0, #20971520
+ 371 0320 EBFFFFFE 		bl	xmodemReceive
+ 372 0324 E3500602 		cmp	r0, #2097152
+ 373 0328 E1A04000 		mov	r4, r0
+ 374 032c 81A01000 		movhi	r1, r0
+ 375 0330 8A000027 		bhi	.L49
+ 376 0334 E59F00CC 		ldr	r0, .L52+8
+ 377 0338 EBFFFFFE 		bl	printf
+ 378 033c E1A01004 		mov	r1, r4
+ 379 0340 E3A00505 		mov	r0, #20971520
+ 380 0344 E8BD4010 		ldmfd	sp!, {r4, lr}
+ 381 0348 EAFFFFFE 		b	elfsplitter
+ 382              	.L39:
+ 383 034c EBFFFFFE 		bl	print_help
+ 384 0350 EBFFFFFE 		bl	_core_status
+ 385 0354 E3A00010 		mov	r0, #16
+ 386 0358 EBFFFFFE 		bl	print_spaces
+ 387 035c EA000008 		b	.L50
+ 388              	.L40:
+ 389 0360 E3A01702 		mov	r1, #524288
+ 390 0364 E59F00A0 		ldr	r0, .L52+12
+ 391 0368 EBFFFFFE 		bl	printf
+ 392 036c E3A00010 		mov	r0, #16
+ 393 0370 EBFFFFFE 		bl	print_spaces
+ 394 0374 E59F0094 		ldr	r0, .L52+16
+ 395 0378 EBFFFFFE 		bl	printf
+ 396 037c E3A00702 		mov	r0, #524288
+ 397              	.L51:
+ 398 0380 EBFFFFFE 		bl	_jump_to_program
+ 399              	.L50:
+ 400 0384 E8BD4010 		ldmfd	sp!, {r4, lr}
+ 401 0388 EAFFFFFE 		b	_testpass
+ 402              	.L41:
+ 403 038c E3A01901 		mov	r1, #16384
+ 404 0390 E59F0074 		ldr	r0, .L52+12
+ 405 0394 EBFFFFFE 		bl	printf
+ 406 0398 E3A00010 		mov	r0, #16
+ 407 039c EBFFFFFE 		bl	print_spaces
+ 408 03a0 E59F0068 		ldr	r0, .L52+16
+ 409 03a4 EBFFFFFE 		bl	printf
+ 410 03a8 E3A00901 		mov	r0, #16384
+ 411 03ac EAFFFFF3 		b	.L51
+ 412              	.L42:
+ 413 03b0 E59F1048 		ldr	r1, .L52
+ 414 03b4 E59F0048 		ldr	r0, .L52+4
+ 415 03b8 EBFFFFFE 		bl	printf
+ 416 03bc E1A00004 		mov	r0, r4
+ 417 03c0 E3A01602 		mov	r1, #2097152
+ 418 03c4 EBFFFFFE 		bl	xmodemReceive
+ 419 03c8 E3500602 		cmp	r0, #2097152
+ 420 03cc 98BD8010 		ldmlsfd	sp!, {r4, pc}
+ 421 03d0 E1A01000 		mov	r1, r0
+ 422              	.L49:
+ 423 03d4 E59F0038 		ldr	r0, .L52+20
+ 424 03d8 E8BD4010 		ldmfd	sp!, {r4, lr}
+ 425 03dc EAFFFFFE 		b	printf
+ 426              	.L37:
+ 427 03e0 E59F0024 		ldr	r0, .L52+12
+ 428 03e4 EBFFFFFE 		bl	printf
+ 429 03e8 E3A00010 		mov	r0, #16
+ 430 03ec EBFFFFFE 		bl	print_spaces
+ 431 03f0 E59F0018 		ldr	r0, .L52+16
+ 432 03f4 EBFFFFFE 		bl	printf
+ 433 03f8 E1A00004 		mov	r0, r4
+ 434 03fc EAFFFFDF 		b	.L51
+ 435              	.L53:
+ 436              		.align	2
+ 437              	.L52:
+ 438 0400 000001AC 		.word	.LC26
+ 439 0404 000001A8 		.word	.LC25
+ 440 0408 0000020C 		.word	.LC28
+ 441 040c 00000218 		.word	.LC29
+ 442 0410 00000224 		.word	.LC30
+ 443 0414 000001EC 		.word	.LC27
+ 445              		.section	.rodata.str1.4
+ 446 0226 0000     		.align	2
+ 447              	.LC32:
+ 448 0228 6265666F 		.ascii	"before gethex addr %x \012\000"
+ 448      72652067 
+ 448      65746865 
+ 448      78206164 
+ 448      64722025 
+ 449              		.align	2
+ 450              	.LC31:
+ 451 0240 496E7661 		.ascii	"Invalid command\000"
+ 451      6C696420 
+ 451      636F6D6D 
+ 451      616E6400 
+ 452              		.text
+ 453              		.align	2
+ 454              		.global	parse
+ 456              	parse:
+ 457              		@ args = 0, pretend = 0, frame = 32
+ 458              		@ frame_needed = 0, uses_anonymous_args = 0
+ 459 0418 E92D4030 		stmfd	sp!, {r4, r5, lr}
+ 460 041c E59F3248 		ldr	r3, .L93
+ 461 0420 E5D0C001 		ldrb	ip, [r0, #1]	@ zero_extendqisi2
+ 462 0424 E1A05000 		mov	r5, r0
+ 463 0428 E893000F 		ldmia	r3, {r0, r1, r2, r3}
+ 464 042c E24DD020 		sub	sp, sp, #32
+ 465 0430 E35C0000 		cmp	ip, #0
+ 466 0434 E1A0E00D 		mov	lr, sp
+ 467 0438 E88D000F 		stmia	sp, {r0, r1, r2, r3}
+ 468 043c 0A000088 		beq	.L87
+ 469 0440 E35C000D 		cmp	ip, #13
+ 470 0444 1A000011 		bne	.L57
+ 471 0448 E5D50000 		ldrb	r0, [r5, #0]	@ zero_extendqisi2
+ 472 044c E350006C 		cmp	r0, #108
+ 473 0450 0A000005 		beq	.L61
+ 474 0454 E3500073 		cmp	r0, #115
+ 475 0458 0A000006 		beq	.L62
+ 476 045c E3500068 		cmp	r0, #104
+ 477 0460 1A00000C 		bne	.L92
+ 478 0464 EBFFFFFE 		bl	print_help
+ 479 0468 EA00007D 		b	.L87
+ 480              	.L61:
+ 481 046c E3A00001 		mov	r0, #1
+ 482 0470 E3A01000 		mov	r1, #0
+ 483 0474 EA000034 		b	.L88
+ 484              	.L62:
+ 485 0478 EBFFFFFE 		bl	_core_status
+ 486 047c E3A00010 		mov	r0, #16
+ 487 0480 EBFFFFFE 		bl	print_spaces
+ 488 0484 E59F01E4 		ldr	r0, .L93+4
+ 489 0488 EBFFFFFE 		bl	printf
+ 490 048c EA000074 		b	.L87
+ 491              	.L57:
+ 492 0490 E35C0020 		cmp	ip, #32
+ 493 0494 0A000002 		beq	.L63
+ 494              	.L92:
+ 495 0498 E59F01D4 		ldr	r0, .L93+8
+ 496 049c E1A0100D 		mov	r1, sp
+ 497 04a0 EA00006E 		b	.L89
+ 498              	.L63:
+ 499 04a4 E5D53000 		ldrb	r3, [r5, #0]	@ zero_extendqisi2
+ 500 04a8 E353006A 		cmp	r3, #106
+ 501 04ac 0A00001D 		beq	.L68
+ 502 04b0 8A000004 		bhi	.L72
+ 503 04b4 E3530062 		cmp	r3, #98
+ 504 04b8 0A000051 		beq	.L66
+ 505 04bc E3530064 		cmp	r3, #100
+ 506 04c0 1A000064 		bne	.L65
+ 507 04c4 EA000006 		b	.L67
+ 508              	.L72:
+ 509 04c8 E3530072 		cmp	r3, #114
+ 510 04cc 0A000040 		beq	.L70
+ 511 04d0 E3530077 		cmp	r3, #119
+ 512 04d4 0A000053 		beq	.L71
+ 513 04d8 E3530070 		cmp	r3, #112
+ 514 04dc 1A00005D 		bne	.L65
+ 515 04e0 EA00001B 		b	.L69
+ 516              	.L67:
+ 517 04e4 E1A00005 		mov	r0, r5
+ 518 04e8 E28D1010 		add	r1, sp, #16
+ 519 04ec E28D2014 		add	r2, sp, #20
+ 520 04f0 EBFFFFFE 		bl	get_address_data
+ 521 04f4 E3500000 		cmp	r0, #0
+ 522 04f8 159D4010 		ldrne	r4, [sp, #16]
+ 523 04fc 1A000001 		bne	.L74
+ 524 0500 EA000057 		b	.L87
+ 525              	.L75:
+ 526 0504 EBFFFFFE 		bl	printm
+ 527              	.L74:
+ 528 0508 E59D3010 		ldr	r3, [sp, #16]
+ 529 050c E59D2014 		ldr	r2, [sp, #20]
+ 530 0510 E0833002 		add	r3, r3, r2
+ 531 0514 E1540003 		cmp	r4, r3
+ 532 0518 E1A00004 		mov	r0, r4
+ 533 051c E2844004 		add	r4, r4, #4
+ 534 0520 3AFFFFF7 		bcc	.L75
+ 535 0524 EA00004E 		b	.L87
+ 536              	.L68:
+ 537 0528 E1A00005 		mov	r0, r5
+ 538 052c E3A01002 		mov	r1, #2
+ 539 0530 E28D2010 		add	r2, sp, #16
+ 540 0534 E28D3018 		add	r3, sp, #24
+ 541 0538 EBFFFFFE 		bl	get_hex
+ 542 053c E3500000 		cmp	r0, #0
+ 543 0540 0A000047 		beq	.L87
+ 544 0544 E3A00000 		mov	r0, #0
+ 545              	.L91:
+ 546 0548 E59D1010 		ldr	r1, [sp, #16]
+ 547              	.L88:
+ 548 054c EBFFFFFE 		bl	load_run
+ 549 0550 EA000043 		b	.L87
+ 550              	.L69:
+ 551 0554 E1A00005 		mov	r0, r5
+ 552 0558 E3A01002 		mov	r1, #2
+ 553 055c E28D2010 		add	r2, sp, #16
+ 554 0560 E28D3018 		add	r3, sp, #24
+ 555 0564 EBFFFFFE 		bl	get_hex
+ 556 0568 E3500000 		cmp	r0, #0
+ 557 056c 0A00003C 		beq	.L87
+ 558 0570 E3A03000 		mov	r3, #0
+ 559 0574 E58D3018 		str	r3, [sp, #24]
+ 560 0578 E59D3010 		ldr	r3, [sp, #16]
+ 561 057c E4D34001 		ldrb	r4, [r3], #1	@ zero_extendqisi2
+ 562 0580 E58D3010 		str	r3, [sp, #16]
+ 563 0584 EA00000B 		b	.L78
+ 564              	.L79:
+ 565 0588 E3540000 		cmp	r4, #0
+ 566 058c 0A000003 		beq	.L80
+ 567 0590 EBFFFFFE 		bl	_outbyte
+ 568 0594 E354000D 		cmp	r4, #13
+ 569 0598 E59F00D0 		ldr	r0, .L93+4
+ 570 059c 0BFFFFFE 		bleq	printf
+ 571              	.L80:
+ 572 05a0 E59D2010 		ldr	r2, [sp, #16]
+ 573 05a4 E59D3018 		ldr	r3, [sp, #24]
+ 574 05a8 E4D24001 		ldrb	r4, [r2], #1	@ zero_extendqisi2
+ 575 05ac E2833001 		add	r3, r3, #1
+ 576 05b0 E58D2010 		str	r2, [sp, #16]
+ 577 05b4 E58D3018 		str	r3, [sp, #24]
+ 578              	.L78:
+ 579 05b8 E3140080 		tst	r4, #128
+ 580 05bc E1A00004 		mov	r0, r4
+ 581 05c0 1A000027 		bne	.L87
+ 582 05c4 E59D3018 		ldr	r3, [sp, #24]
+ 583 05c8 E3530A01 		cmp	r3, #4096
+ 584 05cc 3AFFFFED 		bcc	.L79
+ 585 05d0 EA000023 		b	.L87
+ 586              	.L70:
+ 587 05d4 E28D4010 		add	r4, sp, #16
+ 588 05d8 E1A01004 		mov	r1, r4
+ 589 05dc E59F0094 		ldr	r0, .L93+12
+ 590 05e0 EBFFFFFE 		bl	printf
+ 591 05e4 E1A00005 		mov	r0, r5
+ 592 05e8 E1A02004 		mov	r2, r4
+ 593 05ec E3A01002 		mov	r1, #2
+ 594 05f0 E28D3018 		add	r3, sp, #24
+ 595 05f4 EBFFFFFE 		bl	get_hex
+ 596 05f8 E3500000 		cmp	r0, #0
+ 597 05fc 0A000018 		beq	.L87
+ 598 0600 EA000011 		b	.L90
+ 599              	.L66:
+ 600 0604 E1A00005 		mov	r0, r5
+ 601 0608 E3A01002 		mov	r1, #2
+ 602 060c E28D2010 		add	r2, sp, #16
+ 603 0610 E28D3018 		add	r3, sp, #24
+ 604 0614 EBFFFFFE 		bl	get_hex
+ 605 0618 E3500000 		cmp	r0, #0
+ 606 061c 13A00005 		movne	r0, #5
+ 607 0620 1AFFFFC8 		bne	.L91
+ 608 0624 EA00000E 		b	.L87
+ 609              	.L71:
+ 610 0628 E1A00005 		mov	r0, r5
+ 611 062c E28D1010 		add	r1, sp, #16
+ 612 0630 E28D201C 		add	r2, sp, #28
+ 613 0634 EBFFFFFE 		bl	get_address_data
+ 614 0638 E3500000 		cmp	r0, #0
+ 615 063c 0A000008 		beq	.L87
+ 616 0640 E59D201C 		ldr	r2, [sp, #28]
+ 617 0644 E59D3010 		ldr	r3, [sp, #16]
+ 618 0648 E5832000 		str	r2, [r3, #0]
+ 619              	.L90:
+ 620 064c E59D0010 		ldr	r0, [sp, #16]
+ 621 0650 EBFFFFFE 		bl	printm
+ 622 0654 EA000002 		b	.L87
+ 623              	.L65:
+ 624 0658 E59F0014 		ldr	r0, .L93+8
+ 625 065c E1A0100D 		mov	r1, sp
+ 626              	.L89:
+ 627 0660 EBFFFFFE 		bl	printf
+ 628              	.L87:
+ 629 0664 E28DD020 		add	sp, sp, #32
+ 630 0668 E8BD8030 		ldmfd	sp!, {r4, r5, pc}
+ 631              	.L94:
+ 632              		.align	2
+ 633              	.L93:
+ 634 066c 00000240 		.word	.LC31
+ 635 0670 00000224 		.word	.LC30
+ 636 0674 000001A8 		.word	.LC25
+ 637 0678 00000228 		.word	.LC32
+ 639              		.section	.rodata.str1.4
+ 640              		.align	2
+ 641              	.LC33:
+ 642 0250 2563416D 		.ascii	"%cAmber Boot Loader with DE0-NANO 32MB supportv%s\012"
+ 642      62657220 
+ 642      426F6F74 
+ 642      204C6F61 
+ 642      64657220 
+ 643 0282 00       		.ascii	"\000"
+ 644 0283 00       		.align	2
+ 645              	.LC34:
+ 646 0284 32303135 		.ascii	"2015-10-03\000"
+ 646      2D31302D 
+ 646      303300
+ 647 028f 00       		.align	2
+ 648              	.LC35:
+ 649 0290 52656164 		.ascii	"Ready\012> \000"
+ 649      790A3E20 
+ 649      00
+ 650 0299 000000   		.align	2
+ 651              	.LC36:
+ 652 029c 3E2000   		.ascii	"> \000"
+ 653 029f 00       		.text
+ 654              		.align	2
+ 655              		.global	main
+ 657              	main:
+ 658              		@ args = 0, pretend = 0, frame = 40
+ 659              		@ frame_needed = 0, uses_anonymous_args = 0
+ 660 067c E92D41F0 		stmfd	sp!, {r4, r5, r6, r7, r8, lr}
+ 661 0680 E3A0100C 		mov	r1, #12
+ 662 0684 E24DD028 		sub	sp, sp, #40
+ 663 0688 E59F2170 		ldr	r2, .L131
+ 664 068c E59F0170 		ldr	r0, .L131+4
+ 665 0690 EBFFFFFE 		bl	printf
+ 666 0694 EBFFFFFE 		bl	print_help
+ 667 0698 E59F0168 		ldr	r0, .L131+8
+ 668 069c EBFFFFFE 		bl	printf
+ 669 06a0 E3A06000 		mov	r6, #0
+ 670 06a4 E1A07006 		mov	r7, r6
+ 671 06a8 E1A08006 		mov	r8, r6
+ 672 06ac EA000001 		b	.L130
+ 673              	.L126:
+ 674 06b0 E1A06008 		mov	r6, r8
+ 675 06b4 E3A07000 		mov	r7, #0
+ 676              	.L130:
+ 677 06b8 E3A00FFA 		mov	r0, #1000
+ 678 06bc EBFFFFFE 		bl	_inbyte
+ 679 06c0 E2504000 		subs	r4, r0, #0
+ 680 06c4 BAFFFFFB 		blt	.L130
+ 681 06c8 E354001B 		cmp	r4, #27
+ 682 06cc 0A00001C 		beq	.L99
+ 683 06d0 E3570001 		cmp	r7, #1
+ 684 06d4 0354005B 		cmpeq	r4, #91
+ 685 06d8 13A05000 		movne	r5, #0
+ 686 06dc 03A05001 		moveq	r5, #1
+ 687 06e0 03A07002 		moveq	r7, #2
+ 688 06e4 0A00001D 		beq	.L103
+ 689 06e8 E3570002 		cmp	r7, #2
+ 690 06ec 1A000038 		bne	.L104
+ 691 06f0 E3540041 		cmp	r4, #65
+ 692 06f4 01A04005 		moveq	r4, r5
+ 693 06f8 11A07005 		movne	r7, r5
+ 694 06fc 1AFFFFED 		bne	.L130
+ 695 0700 EA000000 		b	.L108
+ 696              	.L109:
+ 697 0704 EBFFFFFE 		bl	_outbyte
+ 698              	.L108:
+ 699 0708 E1540006 		cmp	r4, r6
+ 700 070c E3A00008 		mov	r0, #8
+ 701 0710 E2844001 		add	r4, r4, #1
+ 702 0714 BAFFFFFA 		blt	.L109
+ 703 0718 E3A04000 		mov	r4, #0
+ 704 071c EA000005 		b	.L111
+ 705              	.L112:
+ 706 0720 E28D3014 		add	r3, sp, #20
+ 707 0724 E7D42003 		ldrb	r2, [r4, r3]	@ zero_extendqisi2
+ 708 0728 E1A00002 		mov	r0, r2
+ 709 072c E7C4200D 		strb	r2, [r4, sp]
+ 710 0730 EBFFFFFE 		bl	_outbyte
+ 711 0734 E2844001 		add	r4, r4, #1
+ 712              	.L111:
+ 713 0738 E1540008 		cmp	r4, r8
+ 714 073c BAFFFFF7 		blt	.L112
+ 715 0740 EAFFFFDA 		b	.L126
+ 716              	.L99:
+ 717 0744 E3A07001 		mov	r7, #1
+ 718 0748 EA000004 		b	.L103
+ 719              	.L128:
+ 720 074c E28D2028 		add	r2, sp, #40
+ 721 0750 E0823006 		add	r3, r2, r6
+ 722 0754 E5434028 		strb	r4, [r3, #-40]
+ 723 0758 E2866001 		add	r6, r6, #1
+ 724 075c E3A07000 		mov	r7, #0
+ 725              	.L103:
+ 726 0760 E3560012 		cmp	r6, #18
+ 727 0764 D3A03000 		movle	r3, #0
+ 728 0768 C3A03001 		movgt	r3, #1
+ 729 076c E354000D 		cmp	r4, #13
+ 730 0770 03833001 		orreq	r3, r3, #1
+ 731 0774 E3530000 		cmp	r3, #0
+ 732 0778 0AFFFFCE 		beq	.L130
+ 733 077c E3560001 		cmp	r6, #1
+ 734 0780 DA000007 		ble	.L116
+ 735 0784 E3A01000 		mov	r1, #0
+ 736              	.L118:
+ 737 0788 E7D1200D 		ldrb	r2, [r1, sp]	@ zero_extendqisi2
+ 738 078c E28D3014 		add	r3, sp, #20
+ 739 0790 E7C12003 		strb	r2, [r1, r3]
+ 740 0794 E2811001 		add	r1, r1, #1
+ 741 0798 E3510014 		cmp	r1, #20
+ 742 079c 1AFFFFF9 		bne	.L118
+ 743 07a0 E2468001 		sub	r8, r6, #1
+ 744              	.L116:
+ 745 07a4 E28D2028 		add	r2, sp, #40
+ 746 07a8 E0823006 		add	r3, r2, r6
+ 747 07ac E3A04000 		mov	r4, #0
+ 748 07b0 E5434028 		strb	r4, [r3, #-40]
+ 749 07b4 E59F0050 		ldr	r0, .L131+12
+ 750 07b8 EBFFFFFE 		bl	printf
+ 751 07bc E1A0000D 		mov	r0, sp
+ 752 07c0 EBFFFFFE 		bl	parse
+ 753 07c4 E59F0044 		ldr	r0, .L131+16
+ 754 07c8 EBFFFFFE 		bl	printf
+ 755 07cc E1A06004 		mov	r6, r4
+ 756 07d0 EAFFFFB8 		b	.L130
+ 757              	.L104:
+ 758 07d4 EBFFFFFE 		bl	_outbyte
+ 759 07d8 E3540008 		cmp	r4, #8
+ 760 07dc 13A03000 		movne	r3, #0
+ 761 07e0 03A03001 		moveq	r3, #1
+ 762 07e4 E3560000 		cmp	r6, #0
+ 763 07e8 D3A03000 		movle	r3, #0
+ 764 07ec E3530000 		cmp	r3, #0
+ 765 07f0 12466001 		subne	r6, r6, #1
+ 766 07f4 11A07005 		movne	r7, r5
+ 767 07f8 1AFFFFD8 		bne	.L103
+ 768 07fc EAFFFFD2 		b	.L128
+ 769              	.L132:
+ 770              		.align	2
+ 771              	.L131:
+ 772 0800 00000284 		.word	.LC34
+ 773 0804 00000250 		.word	.LC33
+ 774 0808 00000290 		.word	.LC35
+ 775 080c 00000224 		.word	.LC30
+ 776 0810 0000029C 		.word	.LC36
+ 778              		.ident	"GCC: (GNU) 4.1.1 (WinARM)"
+DEFINED SYMBOLS
+                            *ABS*:00000000 boot-loader.c
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:22     .text:00000000 get_hex
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:25     .text:00000000 $a
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:104    .text:00000120 $d
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:113    .text:00000134 get_address_data
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:116    .text:00000134 $a
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:147    .text:00000188 print_spaces
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:163    .text:000001a8 $d
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:224    .text:000001ac print_help
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:227    .text:000001ac $a
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:284    .text:00000284 $d
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:311    .text:000002cc printm
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:315    .text:000002cc $a
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:323    .text:000002dc $d
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:349    .text:000002e0 load_run
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:352    .text:000002e0 $a
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:360    .text:000002f8 $d
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:366    .text:0000030c $a
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:438    .text:00000400 $d
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:456    .text:00000418 parse
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:459    .text:00000418 $a
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:634    .text:0000066c $d
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:657    .text:0000067c main
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:660    .text:0000067c $a
+C:\Users\jh\AppData\Local\Temp/ccuGaaaa.s:772    .text:00000800 $d
+
+UNDEFINED SYMBOLS
+printf
+xmodemReceive
+elfsplitter
+_core_status
+_jump_to_program
+_testpass
+_outbyte
+_inbyte
