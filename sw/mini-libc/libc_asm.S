@@ -71,8 +71,7 @@ _outbyte:
 1:      ldr     r2, [r3]
         and     r2, r2, #0x20
         cmp     r2, #0
-/*     streqb  r0, [r1] */
-         streq   r0, [r1]  
+        streqb  r0, [r1]
         moveqs  pc, lr          @ return
         bne     1b
 
@@ -93,8 +92,7 @@ _inbyte:
         @ Check the r2 empty flag
 2:      ldr     r0, [r3]
         ands    r0, r0, #0x10
-/*       ldreqb  r0, [r2]  */
-         ldreq   r0, [r2] 
+        ldreqb  r0, [r2]
         moveq   pc, lr
         
         @ decrement timeout
@@ -552,8 +550,8 @@ strncmp:
 
 AdrMalloc:      .word  0x7000000
 AdrTestStatus:  .word  ADR_AMBER_TEST_STATUS
-AdrUARTDR:      .word  ADR_AMBER_UART1_DR
-AdrUARTFR:      .word  ADR_AMBER_UART1_FR
+AdrUARTDR:      .word  ADR_AMBER_UART0_DR
+AdrUARTFR:      .word  ADR_AMBER_UART0_FR
 /* ========================================================================= */
 /* ========================================================================= */
         

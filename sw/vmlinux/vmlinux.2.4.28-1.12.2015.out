@@ -1,0 +1,29 @@
+j 0x00080000
+
+Linux version 2.4.27-vrs1 (conor@server) (gcc version 4.5.1 (Sourcery G++ Lite 2010.09-58) ) #446 Mon Dec 21 14:04:42 GMT 2009
+CPU: Amber 2 revision 0
+Machine: Amber-FPGA-System
+On node 0 totalpages: 1024
+zone(0): 1024 pages.
+zone(1): 0 pages.
+zone(2): 0 pages.
+Kernel command line: console=ttyAM0 mem=32M root=/dev/ram
+19.91 BogoMIPS (preset value used)
+Memory: 32MB = 32MB total
+Memory: 27264KB available (496K code, 195K data, 32K init)
+Dentry cache hash table entries: 4096 (order: 0, 32768 bytes)
+Inode cache hash table entries: 4096 (order: 0, 32768 bytes)
+Mount cache hash table entries: 4096 (order: 0, 32768 bytes)
+Buffer cache hash table entries: 8192 (order: 0, 32768 bytes)
+Page-cache hash table entries: 8192 (order: 0, 32768 bytes)
+POSIX conformance testing by UNIFIX
+Linux NET4.0 for Linux 2.4
+Based upon Swansea University Computer Society NET3.039
+Starting kswapd
+ttyAM0 at MMIO 0x16000000 (irq = 1) is a WSBN
+pty: 256 Unix98 ptys configured
+RAMDISK driver initialized: 16 RAM disks of 4108K size 1024 blocksize
+NetWinder Floating Point Emulator V0.97 (double precision)
+RAMDISK: Compressed image found at block 8388608
+Freeing initrd memory: 4096K
+Kernel panic: VFS: Unable to mount root fs on 01:00

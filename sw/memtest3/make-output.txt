@@ -1,0 +1,18 @@
+jheath@jheath-VirtualBox:~/src/amber-arm/sw/memtest3$ make
+make -s -C ../mini-libc MIN_SIZE=1
+arm-none-linux-gnueabi-ld -Bstatic -Map memtest.map  --strip-debug --fix-v4bx -o memtest.elf -T sections.lds memtest.o newmain.o start.o ../mini-libc/printf.o ../mini-libc/libc_asm.o ../mini-libc/memcpy.o
+newmain.o: In function `memTestDataBus':
+newmain.c:(.text+0x0): multiple definition of `memTestDataBus'
+memtest.o:memtest.c:(.text+0x0): first defined here
+newmain.o: In function `memTestAddressBus':
+newmain.c:(.text+0x24): multiple definition of `memTestAddressBus'
+memtest.o:memtest.c:(.text+0x24): first defined here
+newmain.o: In function `memTestDevice1':
+newmain.c:(.text+0xf4): multiple definition of `memTestDevice1'
+memtest.o:memtest.c:(.text+0xf4): first defined here
+newmain.o: In function `memTestDevice2':
+newmain.c:(.text+0x144): multiple definition of `memTestDevice2'
+memtest.o:memtest.c:(.text+0x144): first defined here
+newmain.o: In function `main':
+newmain.c:(.text.startup+0x20): undefined reference to `memset'
+make: *** [memtest.elf] Error 1

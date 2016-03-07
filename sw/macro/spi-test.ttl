@@ -1,0 +1,109 @@
+RGPIO_OE=537133064 ; 0x20040008
+RGPIO_OUT=537133060 ; 0x20040004
+SPI0_BUF_REG=536870916 ; 0x20000004
+SPI0_BAUD_REG=536870928 ; 0x2000 0016
+
+
+PATTERN=85 ; 0x55
+ADDR2= 0;
+ADDR1= 0;
+ADDR0= 0;
+PTIME=0;
+
+;Setup DIO
+sprintf 'w %x %x' RGPIO_OE 1
+sendln inputstr
+;pause PTIME
+;sprintf 'w %x %x' RGPIO_OUT 0 ; Drive SS_N low 
+;sendln inputstr
+;pause PTIME
+
+;Setup SPI0
+sprintf 'w %x %x' SPI0_BAUD_REG 199 ; divide by 400 for 1MHz
+sendln inputstr
+pause PTIME
+
+;sprintf 'w %x %x' RGPIO_OUT 0 ; Drive SS_N low  (begin)
+;sendln inputstr
+;pause PTIME
+;sprintf 'w %x %x' SPI0_BUF_REG 6 ; Write Enable CMD (0x6)
+;sendln inputstr
+;pause PTIME
+;sprintf 'w %x %x' RGPIO_OUT 1 ; Drive SS_N high  (end)
+;sendln inputstr
+;pause PTIME
+
+
+;Erase Bytes
+sprintf 'w %x %x' RGPIO_OUT 0 ; Drive SS_N low  (begin)
+sendln inputstr
+pause PTIME
+sprintf 'w %x %x' SPI0_BUF_REG 6 ; Chip Erase CMD (0x60)
+sendln inputstr
+pause PTIME
+sprintf 'w %x %x' RGPIO_OUT 1 ; Drive SS_N high  (end)
+sendln inputstr
+;pause PTIME
+
+;Write byte
+sprintf 'w %x %x' RGPIO_OUT 0 ; Drive SS_N low  (begin)
+sendln inputstr
+pause PTIME
+sprintf 'w %x %x' SPI0_BUF_REG 2 ; RDID CMD
+sendln inputstr
+;pause PTIME
+sprintf 'w %x %x' SPI0_BUF_REG 0 ; Address MSB
+sendln inputstr
+;pause PTIME
+sprintf 'w %x %x' SPI0_BUF_REG 0 ; Address 
+sendln inputstr
+;pause PTIME
+sprintf 'w %x %x' SPI0_BUF_REG 170 ; Address LSB
+sendln inputstr
+;pause PTIME
+;sprintf 'w %x %x' SPI0_BUF_REG 0 ; pattern to write
+;sendln inputstr
+;pause PTIME
+;sprintf 'd %x %x' SPI0_BUF_REG 1 ; display received
+;sendln inputstr
+pause PTIME
+sprintf 'w %x %x' RGPIO_OUT 1 ; Drive SS_N high  (end)
+sendln inputstr
+pause PTIME
+
+;Read byte
+sprintf 'w %x %x' RGPIO_OUT 0 ; Drive SS_N low  (begin)
+sendln inputstr
+pause PTIME
+sprintf 'w %x %x' SPI0_BUF_REG 3 ; Read CMD
+sendln inputstr
+;pause PTIME
+sprintf 'w %x %x' SPI0_BUF_REG 0 ; Address MSB
+sendln inputstr
+;pause PTIME
+sprintf 'w %x %x' SPI0_BUF_REG 0 ; Address 
+sendln inputstr
+;pause PTIME
+;sprintf 'w %x %x' SPI0_BUF_REG ADDR0 ; Address LSB
+;sendln inputstr
+sprintf 'w %x %x' RGPIO_OUT 1 ; Drive SS_N high  (end)
+sendln inputstr
+;pause PTIME
+
+sprintf 'd %x %x' SPI0_BUF_REG 1 ; display received
+sendln inputstr
+;sprintf 'd %x %x' SPI0_BUF_REG 1 ; display received
+;sendln inputstr
+;sprintf 'd %x %x' SPI0_BUF_REG 1 ; display received
+;sendln inputstr
+;sprintf 'd %x %x' SPI0_BUF_REG 1 ; display received
+;sendln inputstr
+;pause PTIME
+;sprintf 'w %x %x' RGPIO_OUT 1 ; Drive SS_N high  (end)
+;sendln inputstr
+;pause PTIME
+
+;end
+ 
+sprintf 'd 20000000 14'
+sendln inputstr

@@ -1,0 +1,33 @@
+;INITFS='Q:\Documents\fpga\de0nano\Amber-Marsohod2-master\sw\vmlinux\initrd-200k-hello-world'
+INITFS='Q:\Documents\fpga\de0nano\Amber-Marsohod2-master\sw\disk\rootfs.cpio.gz-1.19.2015'
+LINUX='Q:\Documents\fpga\de0nano\Amber-Marsohod2-master\sw\kernel\zImage-1.19.2015'
+
+PTIME=3
+
+  sprintf 'w 168 00400000' ; reserve 4MB or ram for initrd so 
+  sendln inputstr
+  
+  sprintf 'w 154 100C' ; ramdisk is 4108 of 1KB ram.
+  sendln inputstr
+
+    sprintf 'd 168 4'
+  sendln inputstr
+
+    sprintf 'd 154 4'
+  sendln inputstr
+
+   sprintf 'b 800000'  ; load into mem  at 8MB
+  sendln inputstr
+xmodemsend INITFS 3
+
+pause PTIME
+
+  ;sprintf 'l'
+  sprintf 'b 80000'
+  sendln inputstr
+ xmodemsend LINUX 3
+ pause PTIME
+ 
+   sprintf 'j 80000'
+  sendln inputstr
+

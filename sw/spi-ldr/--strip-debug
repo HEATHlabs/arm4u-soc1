@@ -1,0 +1,143 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00008000                . = 0x8000
+
+.text           0x00008000     0x19f0
+ start*(.text)
+ .text          0x00008000      0x180 start.o
+                0x00008000                start
+                0x0000804c                _jump_to_program
+                0x00008094                _core_status
+ *(.text)
+ .text          0x00008180      0x7f0 spi-main.o
+                0x00008180                delay
+                0x000081a0                bit_clear
+                0x000081b4                bit_set
+                0x000081c8                dump_pio_regs
+                0x00008208                dump_spi_regs
+                0x00008264                out_spi
+                0x00008298                in_spi
+                0x000082d0                pio_init
+                0x000082f4                spi_init
+                0x00008304                ee25xxx_read
+                0x000084c4                ee25xxx_write_enable
+                0x00008538                ee25xxx_erasemem
+                0x000085c0                ee25xxx_getid
+                0x00008760                ee25xxx_write
+ .text          0x00008970      0x644 ../mini-libc/printf.o
+                0x00008970                outbyte
+                0x00008994                prints
+                0x00008ad4                printi
+                0x00008c5c                print
+                0x00008f4c                sprintf
+                0x00008f80                printf
+ .text          0x00008fb4      0x480 ../mini-libc/libc_asm.o
+                0x00008fb4                _testfail
+                0x00008fc0                _testpass
+                0x00008fd0                _outbyte
+                0x00008ff0                _inbyte
+                0x00009020                _div
+                0x00009020                __aeabi_idiv
+                0x000090a4                strcpy
+                0x000091a8                strcmp
+                0x000093a0                init_malloc
+                0x000093ac                malloc
+                0x000093c0                strncpy
+                0x000093e4                strncmp
+ .text          0x00009434      0x5bc ../mini-libc/memcpy.o
+                0x00009434                memcpy
+
+.glue_7         0x000099f0        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x000099f0        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x000099f0        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x000099f0        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.text.startup   0x000099f0      0x10c
+ .text.startup  0x000099f0      0x10c spi-main.o
+                0x000099f0                main
+
+.iplt           0x00009afc        0x0
+ .iplt          0x00000000        0x0 spi-main.o
+
+.data           0x00009afc        0x0
+ *(.data)
+ .data          0x00009afc        0x0 spi-main.o
+ .data          0x00009afc        0x0 start.o
+ .data          0x00009afc        0x0 ../mini-libc/printf.o
+ .data          0x00009afc        0x0 ../mini-libc/libc_asm.o
+ .data          0x00009afc        0x0 ../mini-libc/memcpy.o
+
+.igot.plt       0x00009afc        0x0
+ .igot.plt      0x00000000        0x0 spi-main.o
+
+.rodata
+ *(.rodata)
+
+.rodata.str1.4  0x00009afc      0x194
+ .rodata.str1.4
+                0x00009afc      0x18b spi-main.o
+                                0x18c (size before relaxing)
+ *fill*         0x00009c87        0x1 
+ .rodata.str1.4
+                0x00009c88        0x8 ../mini-libc/printf.o
+
+.rel.dyn        0x00009c90        0x0
+ .rel.iplt      0x00000000        0x0 spi-main.o
+
+.bss            0x00009c90        0x0
+ *(.bss)
+ .bss           0x00009c90        0x0 spi-main.o
+ .bss           0x00009c90        0x0 start.o
+ .bss           0x00009c90        0x0 ../mini-libc/printf.o
+ .bss           0x00009c90        0x0 ../mini-libc/libc_asm.o
+ .bss           0x00009c90        0x0 ../mini-libc/memcpy.o
+
+.stack          0x00009c90        0x0
+                0x00009c90                __stack = .
+LOAD spi-main.o
+LOAD start.o
+LOAD ../mini-libc/printf.o
+LOAD ../mini-libc/libc_asm.o
+LOAD ../mini-libc/memcpy.o
+OUTPUT(spitest.elf elf32-littlearm)
+
+.comment        0x00000000       0x46
+ .comment       0x00000000       0x46 spi-main.o
+                                 0x47 (size before relaxing)
+ .comment       0x00000000       0x47 ../mini-libc/printf.o
+ .comment       0x00000000       0x47 ../mini-libc/memcpy.o
+
+.note.GNU-stack
+                0x00000000        0x0
+ .note.GNU-stack
+                0x00000000        0x0 spi-main.o
+ .note.GNU-stack
+                0x00000000        0x0 ../mini-libc/printf.o
+ .note.GNU-stack
+                0x00000000        0x0 ../mini-libc/memcpy.o
+
+.ARM.attributes
+                0x00000000       0x29
+ .ARM.attributes
+                0x00000000       0x28 spi-main.o
+ .ARM.attributes
+                0x00000028       0x1b start.o
+ .ARM.attributes
+                0x00000043       0x28 ../mini-libc/printf.o
+ .ARM.attributes
+                0x0000006b       0x1b ../mini-libc/libc_asm.o
+ .ARM.attributes
+                0x00000086       0x28 ../mini-libc/memcpy.o

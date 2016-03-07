@@ -1,0 +1,148 @@
+Restore Archived Project report for msystem
+Sun Mar 06 14:20:29 2016
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Restore Archived Project Summary
+  3. Restore Archived Project Messages
+  4. Files Restored
+  5. Files Not Restored
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------+
+; Restore Archived Project Summary                                        ;
++---------------------------------+---------------------------------------+
+; Restore Archived Project Status ; Successful - Sun Mar 06 14:20:29 2016 ;
+; Revision Name                   ; msystem                               ;
+; Top-level Entity Name           ; msystem                               ;
+; Family                          ; Cyclone IV E                          ;
++---------------------------------+---------------------------------------+
+
+
++-----------------------------------+
+; Restore Archived Project Messages ;
++-----------------------------------+
+Info: Successfully restored 'Q:/Documents/fpga/de0nano/Amber-Marsohod2-master/hw/marsohod2/mARM-marshod.qar' into the 'D:\\arm4u-soc2/' directory
+Info: Generated report 'msystem.restore.rpt'
+Info (23030): Evaluation of Tcl script c:/altera/13.0sp1/quartus/common/tcl/apps/qpm/qar.tcl was successful
+Info: Quartus II 64-Bit Shell was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 287 megabytes
+    Info: Processing ended: Sun Mar 06 14:20:30 2016
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:01
+
+
++----------------------------------------------------+
+; Files Restored                                     ;
++----------------------------------------------------+
+; File Name                                          ;
++----------------------------------------------------+
+; db/msystem.cmp.rdb                                 ;
+; incremental_db/compiled_partitions/msystem.db_info ;
+; internal_mem-test.stp                              ;
+; internal_mem-uartt.stp                             ;
+; internal_mem.stp                                   ;
+; mARM.qpf                                           ;
+; msystem.out.sdc                                    ;
+; msystem.qsf                                        ;
+; msystem.v                                          ;
+; msystem_assignment_defaults.qdf                    ;
+; my_clocks_resets.v                                 ;
+; my_pll.ppf                                         ;
+; my_pll.qip                                         ;
+; my_pll.v                                           ;
+; my_pll_bb.v                                        ;
+; spi0.stp                                           ;
+; spi0_auto_stripped.stp                             ;
+; sram/my_sram_2048_32_byte_en.v                     ;
+; sram/my_sram_256_128_byte_en.v                     ;
+; sram/my_sram_256_21_line_en.v                      ;
+; sram/sram_2048_32_byte_en.qip                      ;
+; sram/sram_2048_32_byte_en.v                        ;
+; sram/sram_2048_32_byte_en_bb.v                     ;
+; sram/sram_256_128_byte_en.qip                      ;
+; sram/sram_256_128_byte_en.v                        ;
+; sram/sram_256_128_byte_en_bb.v                     ;
+; sram/sram_256_21_line_en.qip                       ;
+; sram/sram_256_21_line_en.v                         ;
+; sram/sram_256_21_line_en_bb.v                      ;
+; vlog/amber23/a23_alu.v                             ;
+; vlog/amber23/a23_barrel_shift.v                    ;
+; vlog/amber23/a23_cache.v                           ;
+; vlog/amber23/a23_config_defines.v                  ;
+; vlog/amber23/a23_coprocessor.v                     ;
+; vlog/amber23/a23_core.v                            ;
+; vlog/amber23/a23_decode.v                          ;
+; vlog/amber23/a23_execute.v                         ;
+; vlog/amber23/a23_fetch.v                           ;
+; vlog/amber23/a23_functions.v                       ;
+; vlog/amber23/a23_localparams.v                     ;
+; vlog/amber23/a23_multiply.v                        ;
+; vlog/amber23/a23_register_bank.v                   ;
+; vlog/amber23/a23_wishbone.v                        ;
+; vlog/gpio/gpio_defines.v                           ;
+; vlog/gpio/gpio_top.v                               ;
+; vlog/lib/generic_iobuf.v                           ;
+; vlog/lib/generic_sram_byte_en.v                    ;
+; vlog/lib/generic_sram_line_en.v                    ;
+; vlog/sdram/wb_sdram_ctrl/arbiter.v                 ;
+; vlog/sdram/wb_sdram_ctrl/bufram.v                  ;
+; vlog/sdram/wb_sdram_ctrl/dpram_altera.v            ;
+; vlog/sdram/wb_sdram_ctrl/dpram_generic.v           ;
+; vlog/sdram/wb_sdram_ctrl/dual_clock_fifo.v         ;
+; vlog/sdram/wb_sdram_ctrl/sdram_ctrl.v              ;
+; vlog/sdram/wb_sdram_ctrl/wb_port.v                 ;
+; vlog/sdram/wb_sdram_ctrl/wb_sdram_ctrl.v           ;
+; vlog/simplegpio/simple_gpio.v                      ;
+; vlog/system/afifo.v                                ;
+; vlog/system/boot_mem128.v                          ;
+; vlog/system/boot_mem32.v                           ;
+; vlog/system/ddr3_afifo.v                           ;
+; vlog/system/ethmac_wb.v                            ;
+; vlog/system/interrupt_controller.v                 ;
+; vlog/system/memory_configuration.v                 ;
+; vlog/system/register_addresses.v                   ;
+; vlog/system/system_config_defines.v                ;
+; vlog/system/system_functions.v                     ;
+; vlog/system/test_module.v                          ;
+; vlog/system/timer_module.v                         ;
+; vlog/system/uart.v                                 ;
+; vlog/system/wishbone_arbiter.v                     ;
+; vlog/tb/debug_functions.v                          ;
+; vlog/tb/dumpvcd.v                                  ;
+; vlog/tb/global_defines.v                           ;
+; vlog/tiny_spi/rtl/verilog/tiny_spi.v               ;
++----------------------------------------------------+
+
+
++--------------------+
+; Files Not Restored ;
++--------------------+
+; File Name          ;
++--------------------+
+
+

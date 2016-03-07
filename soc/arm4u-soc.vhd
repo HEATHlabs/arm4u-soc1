@@ -91,7 +91,9 @@ architecture Structure of ARM4U_SOC is
 		constant UNCACHABLE_END			: STD_LOGIC_VECTOR(31 downto 0)  := IO_AREA_END;
 		constant A2WB_DATA_W			: natural :=32;
 		constant A2WB_ADR_W				: natural :=32;
-		
+		constant AW						:natural := A2WB_ADR_W;
+		constant DW						:natural := A2WB_DATA_W;
+	
 
 
 	-- Global signals -----------------------------------------------------------------
@@ -126,7 +128,7 @@ architecture Structure of ARM4U_SOC is
 		signal CORE_WB_ACK_I      : STD_LOGIC;                     -- acknowledge
 		signal CORE_WB_HALT_I     : STD_LOGIC;                     -- halt request
 		signal CORE_WB_ERR_I      : STD_LOGIC;                     -- abnormal termination
-
+		signal CORE_WB_RTY_I      : STD_LOGIC;                     -- retry (not used set to 0)
 		-- Avalon to Wishbone Bridge
 		--	 Arm4u master output to Avalon Slave input
 		signal CORE_AV_ADDRESS_O	: STD_LOGIC_VECTOR(AW-1 downto 0); 		-- s_av_address_i,
@@ -139,19 +141,7 @@ architecture Structure of ARM4U_SOC is
 		signal CORE_AV_WAIT_REQ_I 	: STD_LOGIC;	  						-- s_av_waitrequest_o,
 		signal CORE_AV_RD_DAT_VALID : STD_LOGIC;		  					-- s_av_readdatavalid_o,
 		
-	-- // Wishbone Master Output
-	-- output [AW-1:0]   wbm_adr_o,
-	-- output [DW-1:0]   wbm_dat_o,
-	-- output [DW/8-1:0] wbm_sel_o,
-	-- output 		  wbm_we_o,
-	-- output 		  wbm_cyc_o,
-	-- output 		  wbm_stb_o,
-	-- output [2:0] 	  wbm_cti_o,
-	-- output [1:0] 	  wbm_bte_o,
-	-- input [DW-1:0] 	  wbm_dat_i,
-	-- input 		  wbm_ack_i,
-	-- input 		  wbm_err_i,
-	-- input 		  wbm_rty_i
+
 	-- Component interface ------------------------------------------------------------
 	-- -----------------------------------------------------------------------------------
 
@@ -309,7 +299,7 @@ architecture Structure of ARM4U_SOC is
 						s_av_address_i		: in  std_logic_vector(AW-1 downto 0);
 						s_av_byteenable_i	: in  std_logic_vector(DW/8-1 downto 0);
 						s_av_read_i			: in  STD_LOGIC;
-						s_av_readdata_o		: out  std_logic_vector(W-1 downto 0);
+						s_av_readdata_o	: out  std_logic_vector(DW-1 downto 0);
 						s_av_burstcount_i	: in  std_logic_vector(7 downto 0);
 						s_av_write_i		: in  STD_LOGIC;
 						s_av_writedata_i	: in  std_logic_vector(DW-1 downto 0);
@@ -334,7 +324,7 @@ architecture Structure of ARM4U_SOC is
 		
 	-- Internal Working Memory --------------------------------------------------------
 	-- -----------------------------------------------------------------------------------
-		component MEMORY
+		component SRAM_MEMORY
 			generic	(
 						MEM_SIZE      : natural := 256;  -- memory cells
 						LOG2_MEM_SIZE : natural := 8;    -- log2(memory cells)
@@ -363,38 +353,36 @@ architecture Structure of ARM4U_SOC is
 		component wb_sdram_ctrl
 			port (
                   
-                -- WB bus
-                    wb_clk			: in  STD_LOGIC;
-                    wb_rst			: in  STD_LOGIC;
-                    wb_adr_i			: in  STD_LOGIC_VECTOR(31 downto 0);
-                    wb_dat_i			: in  STD_LOGIC_VECTOR(31 downto 0);
-                    wb_dat_o			: out STD_LOGIC_VECTOR(31 downto 0);
-                    wb_sel_i			: in  STD_LOGIC_VECTOR(3 downto 0);
-                    wb_cyc_i			: in  STD_LOGIC;
-                    wb_stb_i			: in  STD_LOGIC;
-                    wb_we_i			: in  STD_LOGIC;
-                    wb_ack_o			: out STD_LOGIC;
-		    wb_cti_i			: in  STD_LOGIC_VECTOR(02 downto 0); -- cycle indentifier
-		    wb_bte_i			: in  STD_LOGIC_VECTOR(01 downto 0); -- burst trans type
+			 -- WB bus
+				  wb_clk				: in  STD_LOGIC;
+				  wb_rst				: in  STD_LOGIC;
+				  wb_adr_i			: in  STD_LOGIC_VECTOR(31 downto 0);
+				  wb_dat_i			: in  STD_LOGIC_VECTOR(31 downto 0);
+				  wb_dat_o			: out STD_LOGIC_VECTOR(31 downto 0);
+				  wb_sel_i			: in  STD_LOGIC_VECTOR(3 downto 0);
+				  wb_cyc_i			: in  STD_LOGIC;
+				  wb_stb_i			: in  STD_LOGIC;
+				  wb_we_i			: in  STD_LOGIC;
+				  wb_ack_o			: out STD_LOGIC;
+				  wb_cti_i			: in  STD_LOGIC_VECTOR(02 downto 0); -- cycle indentifier
+				  wb_bte_i			: in  STD_LOGIC_VECTOR(01 downto 0); -- burst trans type
 
 		
 				-- Interface to SDRAMs 
-                    sdram_clk			: in  STD_LOGIC;
-                    sdram_rst			: in  STD_LOGIC;
-                    cs_n_pad_o		: out STD_LOGIC;
-						  cke_pad_o			: out STD_LOGIC;
-                    we_pad_o			: out STD_LOGIC;
-                    cas_pad_o			: out STD_LOGIC;
-                    ras_pad_o			: out STD_LOGIC;
-                    dqm_pad_o 		: out STD_LOGIC_VECTOR(1 downto 0);
-                    a_pad_o 			: out STD_LOGIC_VECTOR(12 downto 0);
-                    ba_pad_o			: out STD_LOGIC_VECTOR(1 downto 0);
-						  dq_o				: out STD_LOGIC_VECTOR(15 downto 0);
-						  dq_i				: in STD_LOGIC_VECTOR(15 downto 0);
-						  dq_oe				: out STD_LOGIC
-                    
-
-				);
+				  sdram_clk			: in  STD_LOGIC;
+				  sdram_rst			: in  STD_LOGIC;
+				  cs_n_pad_o		: out STD_LOGIC;
+				  cke_pad_o			: out STD_LOGIC;
+				  we_pad_o			: out STD_LOGIC;
+				  cas_pad_o			: out STD_LOGIC;
+				  ras_pad_o			: out STD_LOGIC;
+				  dqm_pad_o 		: out STD_LOGIC_VECTOR(1 downto 0);
+				  a_pad_o 			: out STD_LOGIC_VECTOR(12 downto 0);
+				  ba_pad_o			: out STD_LOGIC_VECTOR(1 downto 0);
+				  dq_o				: out STD_LOGIC_VECTOR(15 downto 0);
+				  dq_i				: in STD_LOGIC_VECTOR(15 downto 0);
+				  dq_oe				: out STD_LOGIC
+ 				);
 		end component;
 	-- Simple general purpose UART ----------------------------------------------------
 	-- -----------------------------------------------------------------------------------
@@ -507,36 +495,64 @@ architecture Structure of ARM4U_SOC is
 				 );
 		end component;
 
-		
-
-	-- Vector Interrupt Controller ----------------------------------------------------
-	-- -----------------------------------------------------------------------------------
-		component VIC
+amber_interrupt_controller		
+		component amber_interrupt_controller
 			port (
 						-- Wishbone Bus --
-						WB_CLK_I      : in  STD_LOGIC; -- memory master clock
-						WB_RST_I      : in  STD_LOGIC; -- high active sync reset
-						WB_CTI_I      : in  STD_LOGIC_VECTOR(02 downto 0); -- cycle indentifier
-						WB_TGC_I      : in  STD_LOGIC_VECTOR(06 downto 0); -- cycle tag
-						WB_ADR_I      : in  STD_LOGIC_VECTOR(05 downto 0); -- adr in (word boundary)
-						WB_DATA_I     : in  STD_LOGIC_VECTOR(31 downto 0); -- write data
-						WB_DATA_O     : out STD_LOGIC_VECTOR(31 downto 0); -- read data
-						WB_SEL_I      : in  STD_LOGIC_VECTOR(03 downto 0); -- data quantity
-						WB_WE_I       : in  STD_LOGIC; -- write enable
-						WB_STB_I      : in  STD_LOGIC; -- valid cycle
-						WB_ACK_O      : out STD_LOGIC; -- acknowledge
-						WB_HALT_O     : out STD_LOGIC; -- throttle master
-						WB_ERR_O      : out STD_LOGIC; -- abnormal termination
-
+						i_clk      : in  STD_LOGIC; -- memory master clock
+						i_wb_adr      : in  STD_LOGIC_VECTOR(05 downto 0); -- adr in (word boundary)
+						i_wb_dat     : in  STD_LOGIC_VECTOR(31 downto 0); -- write data
+						o_wb_dat     : out STD_LOGIC_VECTOR(31 downto 0); -- read data
+						i_wb_sel      : in  STD_LOGIC_VECTOR(03 downto 0); -- data quantity
+						i_wb_we       : in  STD_LOGIC; -- write enable
+						i_wb_stb      : in  STD_LOGIC; -- valid cycle
+						o_wb_ack      : out STD_LOGIC; -- acknowledge
+						o_wb_err      : out STD_LOGIC; -- abnormal termination
+						i_wb_cyc
 						-- INT Lines & ACK --
-						IRQ_LINES_I   : in  STD_LOGIC_VECTOR(31 downto 0);
-						ACK_LINES_O   : out STD_LOGIC_VECTOR(31 downto 0);
+						i_uart0_int   : in  STD_LOGIC;
+						i_uart1_int   : in  STD_LOGIC;
+						i_ethmac_int   : in  STD_LOGIC;
+						i_test_reg_irq   : in  STD_LOGIC;
+						i_test_reg_firq   : in  STD_LOGIC;
+						i_tm_timer_int   : in  STD_LOGIC_VECTOR(02 downto 0);
+						
 
 						-- Global FIQ/IRQ signal to ARM4U --
-						STORM_IRQ_O   : out STD_LOGIC;
-						STORM_FIQ_O   : out STD_LOGIC
+						o_irq   : out STD_LOGIC;
+						o_firq   : out STD_LOGIC
 				 );
 		end component;
+		
+		
+	-- Vector Interrupt Controller ----------------------------------------------------
+	-- -----------------------------------------------------------------------------------
+--		component VIC
+--			port (
+--						-- Wishbone Bus --
+--						WB_CLK_I      : in  STD_LOGIC; -- memory master clock
+--						WB_RST_I      : in  STD_LOGIC; -- high active sync reset
+--						WB_CTI_I      : in  STD_LOGIC_VECTOR(02 downto 0); -- cycle indentifier
+--						WB_TGC_I      : in  STD_LOGIC_VECTOR(06 downto 0); -- cycle tag
+--						WB_ADR_I      : in  STD_LOGIC_VECTOR(05 downto 0); -- adr in (word boundary)
+--						WB_DATA_I     : in  STD_LOGIC_VECTOR(31 downto 0); -- write data
+--						WB_DATA_O     : out STD_LOGIC_VECTOR(31 downto 0); -- read data
+--						WB_SEL_I      : in  STD_LOGIC_VECTOR(03 downto 0); -- data quantity
+--						WB_WE_I       : in  STD_LOGIC; -- write enable
+--						WB_STB_I      : in  STD_LOGIC; -- valid cycle
+--						WB_ACK_O      : out STD_LOGIC; -- acknowledge
+--						WB_HALT_O     : out STD_LOGIC; -- throttle master
+--						WB_ERR_O      : out STD_LOGIC; -- abnormal termination
+--
+--						-- INT Lines & ACK --
+--						IRQ_LINES_I   : in  STD_LOGIC_VECTOR(31 downto 0);
+--						ACK_LINES_O   : out STD_LOGIC_VECTOR(31 downto 0);
+--
+--						-- Global FIQ/IRQ signal to ARM4U --
+--						STORM_IRQ_O   : out STD_LOGIC;
+--						STORM_FIQ_O   : out STD_LOGIC
+--				 );
+--		end component;
 
 begin
 
@@ -584,11 +600,11 @@ begin
 --		SAVE_RST <= not RST_I;
 
 		A2WB: avalon_to_wb_bridge
-			generic	(
+			generic	map (
 						DW  => A2WB_DATA_W,	  -- Data width
 						AW   => A2WB_ADR_W      -- Address width
-					);
-			port	(
+					)
+			port	map (
 						wb_clk_i        => MAIN_CLK,
 						wb_rst_i 		=> CPU_RST,        -- global reset input
 						
@@ -605,24 +621,24 @@ begin
 						
 						-- Wishbone Master Output
 						wbm_adr_o          => CORE_WB_ADR_O,   -- address
-						bm_dat_o         => CORE_WB_DATA_O,  -- data out
+						bm_dat_o           => CORE_WB_DATA_O,  -- data out
 						wbm_sel_o          => CORE_WB_SEL_O,   -- byte select
 						wbm_we_o           => CORE_WB_WE_O,    -- write enable
 						wbm_cyc_o          => CORE_WB_CYC_O,   -- valid cycle
 						wbm_stb_o          => CORE_WB_STB_O,   -- valid transfer
 						wbm_cti_o          => CORE_WB_CTI_O,   -- cycle type
 						wbm_bte_o          => CORE_WB_BTE_O,   -- cycle type
-						wbm_dat_i         => CORE_WB_DATA_I,  -- data in
+						wbm_dat_i          => CORE_WB_DATA_I,  -- data in
 						wbm_ack_i          => CORE_WB_ACK_I,   -- acknowledge
-						-- wbm_rty_i			: in  STD_LOGIC
+						wbm_rty_i			 => CORE_WB_RTY_I,
 						wbm_err_i          => CORE_WB_ERR_I   -- abnormal termination
 					);
-		
+		CORE_WB_RTY_I <= '0'; --not used
 
 	-- ARM4U CORE PROCESSOR --------------------------------------------------------------------------------
 	-- --------------------------------------------------------------------------------------------------------
 		ARM4U: arm4u_cpu
-					port(
+					port map (
 						-- Globals
 						clk						=> MAIN_CLK,        -- core clock input
 						reset					=> CPU_RST,        -- global reset input
@@ -632,7 +648,7 @@ begin
 						avm_inst_readdatavalid	=> CORE_AV_RD_DAT_VALID,
 						avm_inst_readdata		=> CORE_AV_RD_DAT_I,
 						avm_inst_read			=> CORE_AV_RD_O,
-						avm_inst_burstcount		=> CORE_AV_BUST_CNT_O,
+						avm_inst_burstcount		=> CORE_AV_BUST_CNT_O(3 downto 0),
 						avm_inst_address		=> CORE_AV_ADDRESS_O,
 						
 						--Avalon Master Interface for data
@@ -643,14 +659,18 @@ begin
 						avm_data_writedata		=> CORE_AV_WR_DAT_O,
 						avm_data_write			=> CORE_AV_WR_O,
 						avm_data_byteen			=> CORE_AV_BE_O,
-						avm_data_burstcount		=> CORE_AV_BUST_CNT_O,
+						avm_data_burstcount		=> CORE_AV_BUST_CNT_O(4 downto 0),
 						avm_data_address		=> CORE_AV_ADDRESS_O,
 						
-						--Interrupt interface
 						inr_irq (00)    		=> STORM_IRQ,       -- interrupt request
-						inr_irq (01)			=> STORM_FIQ,        -- fast interrupt request
-						inr_irq (31 downto 02) 	<= (others => '0')
+						inr_irq (01)			=> STORM_FIQ        -- fast interrupt request
+
+						--Interrupt interface
 					);
+--						inr_irq (00)    		<= STORM_IRQ,       -- interrupt request
+--						inr_irq (01)			<= STORM_FIQ,        -- fast interrupt request
+--						inr_irq (31 downto 02) 	<= (others => '0')
+--						--INT_LINES(31 downto 06) <= (others => '0'); -- unused
 
 
 
@@ -725,7 +745,7 @@ begin
 
 	-- Internal Working Memory -----------------------------------------------------------------------------
 	-- --------------------------------------------------------------------------------------------------------
-		INTERNAL_SRAM_MEMORY: MEMORY
+		INTERNAL_SRAM_MEMORY: SRAM_MEMORY
 			generic map	(
 						MEM_SIZE      => INT_MEM_SIZE_C/4,       -- memory size in 32-bit cells
 						LOG2_MEM_SIZE => log2(INT_MEM_SIZE_C/4), -- log2 memory size in 32-bit cells
@@ -938,13 +958,13 @@ begin
 
 			-- IRQ/FIQ Lines --
 			INT_LINES(00) <= SYS_TIMER0_IRQ;
-			INT_LINES(01) <= GP_IO0_IRQ;
-			INT_LINES(02) <= UART0_TX_IRQ;
-			INT_LINES(03) <= UART0_RX_IRQ;
-			INT_LINES(04) <= SPI0_CTRL_IRQ;
-			INT_LINES(05) <= I2C0_CTRL_IRQ;
-			INT_LINES(06) <= UART1_RX_IRQ;
-			INT_LINES(31 downto 07) <= (others => '0'); -- unused
+--			INT_LINES(01) <= GP_IO0_IRQ;
+			INT_LINES(01) <= UART0_TX_IRQ;
+			INT_LINES(02) <= UART0_RX_IRQ;
+--			INT_LINES(04) <= SPI0_CTRL_IRQ;
+--			INT_LINES(05) <= I2C0_CTRL_IRQ;
+			INT_LINES(03) <= UART1_RX_IRQ;
+			INT_LINES(31 downto 04) <= (others => '0'); -- unused
 
 
 

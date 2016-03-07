@@ -1,0 +1,141 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00008000                . = 0x8000
+
+.text           0x00008000     0x16e0
+ start*(.text)
+ .text          0x00008000      0x180 start.o
+                0x00008000                start
+                0x0000804c                _jump_to_program
+                0x00008094                _core_status
+ *(.text)
+ .text          0x00008180      0x4e0 eths-main.o
+                0x00008180                delay
+                0x000081a0                bit_clear
+                0x000081b4                bit_set
+                0x000081c8                dump_pio_regs
+                0x00008208                dump_spi_regs
+                0x00008268                out_spi
+                0x000082a0                in_spi
+                0x000082dc                pio_init
+                0x00008300                spi_init
+                0x00008314                enc25j_read
+                0x00008404                enc25j_getid
+                0x00008590                enc25j_write
+ .text          0x00008660      0x644 ../mini-libc/printf.o
+                0x00008660                outbyte
+                0x00008684                prints
+                0x000087c4                printi
+                0x0000894c                print
+                0x00008c3c                sprintf
+                0x00008c70                printf
+ .text          0x00008ca4      0x480 ../mini-libc/libc_asm.o
+                0x00008ca4                _testfail
+                0x00008cb0                _testpass
+                0x00008cc0                _outbyte
+                0x00008ce0                _inbyte
+                0x00008d10                _div
+                0x00008d10                __aeabi_idiv
+                0x00008d94                strcpy
+                0x00008e98                strcmp
+                0x00009090                init_malloc
+                0x0000909c                malloc
+                0x000090b0                strncpy
+                0x000090d4                strncmp
+ .text          0x00009124      0x5bc ../mini-libc/memcpy.o
+                0x00009124                memcpy
+
+.glue_7         0x000096e0        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x000096e0        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x000096e0        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x000096e0        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.text.startup   0x000096e0       0x98
+ .text.startup  0x000096e0       0x98 eths-main.o
+                0x000096e0                main
+
+.iplt           0x00009778        0x0
+ .iplt          0x00000000        0x0 eths-main.o
+
+.data           0x00009778        0x0
+ *(.data)
+ .data          0x00009778        0x0 eths-main.o
+ .data          0x00009778        0x0 start.o
+ .data          0x00009778        0x0 ../mini-libc/printf.o
+ .data          0x00009778        0x0 ../mini-libc/libc_asm.o
+ .data          0x00009778        0x0 ../mini-libc/memcpy.o
+
+.igot.plt       0x00009778        0x0
+ .igot.plt      0x00000000        0x0 eths-main.o
+
+.rodata
+ *(.rodata)
+
+.rodata.str1.4  0x00009778      0x15c
+ .rodata.str1.4
+                0x00009778      0x151 eths-main.o
+                                0x154 (size before relaxing)
+ *fill*         0x000098c9        0x3 
+ .rodata.str1.4
+                0x000098cc        0x8 ../mini-libc/printf.o
+
+.rel.dyn        0x000098d4        0x0
+ .rel.iplt      0x00000000        0x0 eths-main.o
+
+.bss            0x000098d4        0x0
+ *(.bss)
+ .bss           0x000098d4        0x0 eths-main.o
+ .bss           0x000098d4        0x0 start.o
+ .bss           0x000098d4        0x0 ../mini-libc/printf.o
+ .bss           0x000098d4        0x0 ../mini-libc/libc_asm.o
+ .bss           0x000098d4        0x0 ../mini-libc/memcpy.o
+
+.stack          0x000098d4        0x0
+                0x000098d4                __stack = .
+LOAD eths-main.o
+LOAD start.o
+LOAD ../mini-libc/printf.o
+LOAD ../mini-libc/libc_asm.o
+LOAD ../mini-libc/memcpy.o
+OUTPUT(eths-test.elf elf32-littlearm)
+
+.comment        0x00000000       0x46
+ .comment       0x00000000       0x46 eths-main.o
+                                 0x47 (size before relaxing)
+ .comment       0x00000000       0x47 ../mini-libc/printf.o
+ .comment       0x00000000       0x47 ../mini-libc/memcpy.o
+
+.note.GNU-stack
+                0x00000000        0x0
+ .note.GNU-stack
+                0x00000000        0x0 eths-main.o
+ .note.GNU-stack
+                0x00000000        0x0 ../mini-libc/printf.o
+ .note.GNU-stack
+                0x00000000        0x0 ../mini-libc/memcpy.o
+
+.ARM.attributes
+                0x00000000       0x29
+ .ARM.attributes
+                0x00000000       0x28 eths-main.o
+ .ARM.attributes
+                0x00000028       0x1b start.o
+ .ARM.attributes
+                0x00000043       0x28 ../mini-libc/printf.o
+ .ARM.attributes
+                0x0000006b       0x1b ../mini-libc/libc_asm.o
+ .ARM.attributes
+                0x00000086       0x28 ../mini-libc/memcpy.o

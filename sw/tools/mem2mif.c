@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h> 
 
-//unsigned char memory[1024*16];
-unsigned char memory[2048*16];
+unsigned char memory[1024*16];
+
 int main (int argc, char **argv)
 {
     FILE *input_file;
@@ -11,7 +11,7 @@ int main (int argc, char **argv)
     char* pstr=&str[0];
     int i,j,n;
     unsigned int adr,val;
-	//printf("clear memory\n");
+
     for(i=0; i<sizeof(memory); i++)
 	memory[i]=0;
 
@@ -22,7 +22,7 @@ int main (int argc, char **argv)
     }
     printf("#input file %08X\n",(unsigned int)input_file);
     printf("WIDTH = 32;\n");
-    printf("DEPTH = 4096;\n");
+    printf("DEPTH = 2048;\n");
     printf("ADDRESS_RADIX = HEX;\n");
     printf("DATA_RADIX = HEX;\n");
     printf("CONTENT BEGIN\n");
@@ -32,12 +32,10 @@ int main (int argc, char **argv)
 	if(feof(input_file))
 	    break;
 	str[0]=0;
-	//printf("get 1k from input file\n");
 	fgets(str,1024,input_file);
 	//printf("> %s",str);
 	if(str[0]=='/')
 	    continue;
-	
 	n=sscanf(str,"@%08X %08X",&adr,&val);
 	//printf("%d %08X %08X\n",n,adr,val);
 	if(n==2)
@@ -50,7 +48,7 @@ int main (int argc, char **argv)
     fclose(input_file);
     
     //for(i=0; i<512; i++)
-    for(i=0; i<4096; i++)
+    for(i=0; i<2048; i++)
     {
 	printf("%08X: ",i);
 	//for(j=15; j>=0; j--)

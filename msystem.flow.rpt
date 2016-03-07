@@ -1,0 +1,194 @@
+Flow report for msystem
+Sun Mar 06 22:43:18 2016
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Flow Summary                                                                         ;
++------------------------------------+-------------------------------------------------+
+; Flow Status                        ; Successful - Sun Mar 06 22:43:07 2016           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; msystem                                         ;
+; Top-level Entity Name              ; arm4usoc                                        ;
+; Family                             ; Cyclone IV E                                    ;
+; Device                             ; EP4CE22F17C6                                    ;
+; Timing Models                      ; Final                                           ;
+; Total logic elements               ; 6,842 / 22,320 ( 31 % )                         ;
+;     Total combinational functions  ; 5,628 / 22,320 ( 25 % )                         ;
+;     Dedicated logic registers      ; 3,623 / 22,320 ( 16 % )                         ;
+; Total registers                    ; 3623                                            ;
+; Total pins                         ; 49 / 154 ( 32 % )                               ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 386,944 / 608,256 ( 64 % )                      ;
+; Embedded Multiplier 9-bit elements ; 6 / 132 ( 5 % )                                 ;
+; Total PLLs                         ; 1 / 4 ( 25 % )                                  ;
++------------------------------------+-------------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 03/06/2016 22:40:47 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; msystem             ;
++-------------------+---------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                                                                                                                                                                                                                         ;
++-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+-------------+------------------+
+; Assignment Name                     ; Value                                                                                                                                                                                                                                                        ; Default Value      ; Entity Name ; Section Id       ;
++-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+-------------+------------------+
+; ALLOW_POWER_UP_DONT_CARE            ; Off                                                                                                                                                                                                                                                          ; On                 ; --          ; --               ;
+; COMPILER_SIGNATURE_ID               ; 102200632297193.145733284609028                                                                                                                                                                                                                              ; --                 ; --          ; --               ;
+; ENABLE_SIGNALTAP                    ; On                                                                                                                                                                                                                                                           ; --                 ; --          ; --               ;
+; EXTRACT_VERILOG_STATE_MACHINES      ; Off                                                                                                                                                                                                                                                          ; On                 ; --          ; --               ;
+; HDL_MESSAGE_LEVEL                   ; Level3                                                                                                                                                                                                                                                       ; Level2             ; --          ; --               ;
+; IP_TOOL_NAME                        ; RAM: 1-PORT                                                                                                                                                                                                                                                  ; --                 ; --          ; --               ;
+; IP_TOOL_NAME                        ; RAM: 1-PORT                                                                                                                                                                                                                                                  ; --                 ; --          ; --               ;
+; IP_TOOL_NAME                        ; RAM: 1-PORT                                                                                                                                                                                                                                                  ; --                 ; --          ; --               ;
+; IP_TOOL_NAME                        ; ALTPLL                                                                                                                                                                                                                                                       ; --                 ; --          ; --               ;
+; IP_TOOL_VERSION                     ; 11.1                                                                                                                                                                                                                                                         ; --                 ; --          ; --               ;
+; IP_TOOL_VERSION                     ; 11.1                                                                                                                                                                                                                                                         ; --                 ; --          ; --               ;
+; IP_TOOL_VERSION                     ; 13.0                                                                                                                                                                                                                                                         ; --                 ; --          ; --               ;
+; IP_TOOL_VERSION                     ; 13.0                                                                                                                                                                                                                                                         ; --                 ; --          ; --               ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                                                                                                                                                                                                                                           ; --                 ; --          ; --               ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                                                                                                                                                                                                                                            ; --                 ; --          ; --               ;
+; MISC_FILE                           ; sram/sram_256_128_byte_en_bb.v                                                                                                                                                                                                                               ; --                 ; --          ; --               ;
+; MISC_FILE                           ; sram/sram_256_21_line_en_bb.v                                                                                                                                                                                                                                ; --                 ; --          ; --               ;
+; MISC_FILE                           ; sram/sram_2048_32_byte_en_bb.v                                                                                                                                                                                                                               ; --                 ; --          ; --               ;
+; MISC_FILE                           ; my_pll_bb.v                                                                                                                                                                                                                                                  ; --                 ; --          ; --               ;
+; MISC_FILE                           ; my_pll.ppf                                                                                                                                                                                                                                                   ; --                 ; --          ; --               ;
+; OPTIMIZE_POWER_DURING_SYNTHESIS     ; Off                                                                                                                                                                                                                                                          ; Normal compilation ; --          ; --               ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                                                                                                                                                                                                                            ; --                 ; --          ; --               ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                                                                                                                                                                                                                            ; --                 ; --          ; --               ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                                                                                                                                                                                                                   ; --                 ; --          ; --               ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                                                                                                                                                                                                                   ; --                 ; --          ; --               ;
+; PARTITION_COLOR                     ; 16764057                                                                                                                                                                                                                                                     ; --                 ; arm4usoc    ; Top              ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                                                                                                                                                                                                                                        ; --                 ; arm4usoc    ; Top              ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                                                                                                                                                                                                                                                       ; --                 ; arm4usoc    ; Top              ;
+; PHYSICAL_SYNTHESIS_COMBO_LOGIC      ; On                                                                                                                                                                                                                                                           ; Off                ; --          ; --               ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                                                                                                                                                                                                                          ; --                 ; --          ; --               ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                                                                                                                                                                                                        ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; ../vlog/tb                                                                                                                                                                                                                                                   ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; ../vlog/amber23                                                                                                                                                                                                                                              ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; ../vlog/system                                                                                                                                                                                                                                               ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; ../vlog/sdram/sdr_ctrl/trunk/rtl/core                                                                                                                                                                                                                        ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; sram/                                                                                                                                                                                                                                                        ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; vlog/amber23/                                                                                                                                                                                                                                                ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; vlog/gpio/                                                                                                                                                                                                                                                   ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; vlog/lib/                                                                                                                                                                                                                                                    ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; vlog/sdram/wb_sdram_ctrl/                                                                                                                                                                                                                                    ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; vlog/simplegpio/                                                                                                                                                                                                                                             ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; vlog/system/                                                                                                                                                                                                                                                 ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; vlog/tb/                                                                                                                                                                                                                                                     ; --                 ; --          ; --               ;
+; SEARCH_PATH                         ; vlog/tiny_spi/rtl/verilog/                                                                                                                                                                                                                                   ; --                 ; --          ; --               ;
+; SLD_FILE                            ; stp1_auto_stripped.stp"p                                                                                                                                                                                                                                     ; --                 ; --          ; --               ;
+; SLD_FILE                            ; D:/arm4u-soc2/spi0_auto_stripped.stp                                                                                                                                                                                                                         ; --                 ; --          ; --               ;
+; SLD_NODE_CREATOR_ID                 ; 110                                                                                                                                                                                                                                                          ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_ENTITY_NAME                ; sld_signaltap                                                                                                                                                                                                                                                ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_NODE_INFO=805334528                                                                                                                                                                                                                                      ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_POWER_UP_TRIGGER=0                                                                                                                                                                                                                                       ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0                                                                                                                                                                                                                ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ATTRIBUTE_MEM_MODE=OFF                                                                                                                                                                                                                                   ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STATE_FLOW_USE_GENERATED=0                                                                                                                                                                                                                               ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STATE_BITS=11                                                                                                                                                                                                                                            ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_BUFFER_FULL_STOP=1                                                                                                                                                                                                                                       ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_CURRENT_RESOURCE_WIDTH=1                                                                                                                                                                                                                                 ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_LEVEL=1                                                                                                                                                                                                                                          ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ADVANCED_TRIGGER_ENTITY=basic,1,                                                                                                                                                                                                                         ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_LEVEL_PIPELINE=1                                                                                                                                                                                                                                 ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ENABLE_ADVANCED_TRIGGER=0                                                                                                                                                                                                                                ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_IN_ENABLED=0                                                                                                                                                                                                                                     ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_DATA_BITS=69                                                                                                                                                                                                                                             ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_BITS=69                                                                                                                                                                                                                                          ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_NODE_CRC_LOWORD=57581                                                                                                                                                                                                                                    ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INVERSION_MASK=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INVERSION_MASK_LENGTH=233                                                                                                                                                                                                                                ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_SEGMENT_SIZE=4096                                                                                                                                                                                                                                        ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_NODE_CRC_HIWORD=39473                                                                                                                                                                                                                                    ; --                 ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_SAMPLE_DEPTH=4096                                                                                                                                                                                                                                        ; --                 ; --          ; auto_signaltap_0 ;
+; TOP_LEVEL_ENTITY                    ; arm4usoc                                                                                                                                                                                                                                                     ; msystem            ; --          ; --               ;
+; USE_SIGNALTAP_FILE                  ; spi0.stp                                                                                                                                                                                                                                                     ; --                 ; --          ; --               ;
+; VERILOG_INPUT_VERSION               ; SystemVerilog_2005                                                                                                                                                                                                                                           ; Verilog_2001       ; --          ; --               ;
+; VERILOG_MACRO                       ; MARSOHOD2=1                                                                                                                                                                                                                                                  ; --                 ; --          ; --               ;
+; VERILOG_MACRO                       ; SDRAM_ISSI=0                                                                                                                                                                                                                                                 ; --                 ; --          ; --               ;
+; VERILOG_MACRO                       ; NOMEMORY=0                                                                                                                                                                                                                                                   ; --                 ; --          ; --               ;
+; VERILOG_MACRO                       ; ALTERAMEM=1                                                                                                                                                                                                                                                  ; --                 ; --          ; --               ;
+; VERILOG_MACRO                       ; SDRAM=1                                                                                                                                                                                                                                                      ; --                 ; --          ; --               ;
+; VERILOG_MACRO                       ; AMBER_UART_BAUD=921600                                                                                                                                                                                                                                       ; --                 ; --          ; --               ;
+; VERILOG_SHOW_LMF_MAPPING_MESSAGES   ; Off                                                                                                                                                                                                                                                          ; --                 ; --          ; --               ;
++-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+-------------+------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:01:16     ; 1.0                     ; 629 MB              ; 00:01:14                           ;
+; Fitter                    ; 00:00:50     ; 1.3                     ; 1273 MB             ; 00:01:00                           ;
+; Assembler                 ; 00:00:04     ; 1.0                     ; 448 MB              ; 00:00:04                           ;
+; TimeQuest Timing Analyzer ; 00:00:10     ; 1.0                     ; 596 MB              ; 00:00:09                           ;
+; Total                     ; 00:02:20     ; --                      ; --                  ; 00:02:27                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++---------------------------+------------------+-----------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
++---------------------------+------------------+-----------+------------+----------------+
+; Analysis & Synthesis      ; jh-PC            ; Windows 7 ; 6.1        ; x86_64         ;
+; Fitter                    ; jh-PC            ; Windows 7 ; 6.1        ; x86_64         ;
+; Assembler                 ; jh-PC            ; Windows 7 ; 6.1        ; x86_64         ;
+; TimeQuest Timing Analyzer ; jh-PC            ; Windows 7 ; 6.1        ; x86_64         ;
++---------------------------+------------------+-----------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off mARM -c msystem
+quartus_fit --read_settings_files=off --write_settings_files=off mARM -c msystem
+quartus_asm --read_settings_files=off --write_settings_files=off mARM -c msystem
+quartus_sta mARM -c msystem
+
+
+

@@ -127,15 +127,15 @@
 #define ADR_AMBER_UART0_IIR            0x1600001c
 #define ADR_AMBER_UART0_ICR            0x1600001c
 
-#define ADR_AMBER_UART1_DR             0xFFFF0200
-#define ADR_AMBER_UART1_RSR            0xFFFF0204
-#define ADR_AMBER_UART1_LCRH           0xFFFF0208
-#define ADR_AMBER_UART1_LCRM           0xFFFF020c
-#define ADR_AMBER_UART1_LCRL           0xFFFF0210
-#define ADR_AMBER_UART1_CR             0xFFFF0214
-#define ADR_AMBER_UART1_FR             0xFFFF0218
-#define ADR_AMBER_UART1_IIR            0xFFFF021c
-#define ADR_AMBER_UART1_ICR            0xFFFF021c
+#define ADR_AMBER_UART1_DR             0x17000000
+#define ADR_AMBER_UART1_RSR            0x17000004
+#define ADR_AMBER_UART1_LCRH           0x17000008
+#define ADR_AMBER_UART1_LCRM           0x1700000c
+#define ADR_AMBER_UART1_LCRL           0x17000010
+#define ADR_AMBER_UART1_CR             0x17000014
+#define ADR_AMBER_UART1_FR             0x17000018
+#define ADR_AMBER_UART1_IIR            0x1700001c
+#define ADR_AMBER_UART1_ICR            0x1700001c
 
 #define ADR_AMBER_CORE_CTRL            0x1300031c
 /*

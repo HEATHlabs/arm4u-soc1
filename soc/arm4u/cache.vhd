@@ -25,12 +25,13 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 use IEEE.numeric_std.all;
+use IEEE.math_real.all;
 
 library altera_mf;
 use altera_mf.all;
 
 library work;
-use work.utils.all;
+--use work.utils.all;
 
 entity cache is
 	generic(
@@ -63,9 +64,11 @@ end cache;
 architecture synth of cache is
 constant C_BLOCK_SIZE     : natural := 2**BLOCK_BITWIDTH;
 constant C_SET_COUNT      : natural := CACHE_SIZE / C_BLOCK_SIZE;
-constant C_INDEX_BITWIDTH : natural := log2(C_SET_COUNT);
+--constant C_INDEX_BITWIDTH : natural := log2(C_SET_COUNT);integer(ceil(log2(real(
+constant C_INDEX_BITWIDTH : natural := integer(ceil(log2(real(C_SET_COUNT))));
 constant C_TAG_BITWIDTH   : natural := INSTR_BADDR_BITWDTH - BLOCK_BITWIDTH - C_INDEX_BITWIDTH;
-constant C_DATA_WADDR_BITWIDTH : natural := log2(CACHE_SIZE)-2; -- addressable words in the data sram
+--constant C_DATA_WADDR_BITWIDTH : natural := log2(CACHE_SIZE)-2; -- addressable words in the data sram
+constant C_DATA_WADDR_BITWIDTH : natural := integer(ceil(log2(real(CACHE_SIZE))))-2; -- addressable words in the data sram
 
 -- registerd coe_cpu_address (without the 2 lsb)
 signal r_address : std_logic_vector(INSTR_BADDR_BITWDTH-3 downto 0);
@@ -73,7 +76,8 @@ signal r_read    : std_logic;
 -- register flush command
 signal r_flush : std_logic;
 -- the current offset in a burst
-signal r_burstoffset : std_logic_vector(log2(C_BLOCK_SIZE)-3 downto 0);
+--signal r_burstoffset : std_logic_vector(log2(C_BLOCK_SIZE)-3 downto 0);
+signal r_burstoffset : std_logic_vector((natural(log2(real(C_BLOCK_SIZE))) - 3) downto 0);
 -- the tag and valid bit
 signal s_vtag_in    : std_logic_vector(C_TAG_BITWIDTH DOWNTO 0);
 signal s_vtag_out   : std_logic_vector(C_TAG_BITWIDTH DOWNTO 0);

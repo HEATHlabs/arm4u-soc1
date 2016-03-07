@@ -27,7 +27,7 @@ use ieee.numeric_std.all;
 use ieee.math_real.all;
 use work.arm_types.all;
 
-entity cpu is
+entity arm4u_cpu is
 	generic(
 		CACHE_BLOCK_BITWIDTH : natural := 5   -- byte address range of a block (hence C_BLOCK_SIZE = 2**BLOCK_BITWIDTH)
  	);
@@ -56,11 +56,11 @@ entity cpu is
 		avm_data_address       : out std_logic_vector(31 downto 0);
 		
 		--Interrupt interface
-		inr_irq                : in  std_logic_vector(31 downto 0) := (others => '0')--fiq=inr_irq[0] ird=inr_irq[1]
+		inr_irq                : in  std_logic_vector(31 downto 0) := (others => '0') --fiq=inr_irq[0] ird=inr_irq[1]
 	);
 end entity;
 
-architecture bench of cpu is
+architecture bench of arm4u_cpu is
 
 	signal n_reset  : std_logic := '0';
 	signal fiq, irq : std_logic;
@@ -110,7 +110,7 @@ begin
 	c: entity work.cache(synth) generic map(
 		INSTR_BADDR_BITWDTH => 32,  -- input coe_cpu_address width in bits
 		BLOCK_BITWIDTH => CACHE_BLOCK_BITWIDTH,   -- byte address range of a block (hence C_BLOCK_SIZE = 2**BLOCK_BITWIDTH)
-		CACHE_WAYS => 1,   -- number of ways in the cache (power of 2), for now only direct-mapped
+--		CACHE_WAYS => 1,   -- number of ways in the cache (power of 2), for now only direct-mapped
 		CACHE_SIZE => 4096 -- cache size in bytes, must be a factor of C_BLOCK_SIZE * CACHE_WAYS
  	) port map(
 		-- Globals

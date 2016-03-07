@@ -1,0 +1,66 @@
+
+State Machine - |arm4usoc|arm4u_cpu:ARM4U|memory:m|wb_mem_ctrl
+Name wb_mem_ctrl.STORE_BYTE~reg0 wb_mem_ctrl.STORE_WORD~reg0 wb_mem_ctrl.LOAD_BURST~reg0 wb_mem_ctrl.LOAD_BYTE~reg0 wb_mem_ctrl.LOAD_WORD~reg0 wb_mem_ctrl.NO_MEM_OP~reg0 
+wb_mem_ctrl.NO_MEM_OP~reg0 0 0 0 0 0 0 
+wb_mem_ctrl.LOAD_WORD~reg0 0 0 0 0 1 1 
+wb_mem_ctrl.LOAD_BYTE~reg0 0 0 0 1 0 1 
+wb_mem_ctrl.LOAD_BURST~reg0 0 0 1 0 0 1 
+wb_mem_ctrl.STORE_WORD~reg0 0 1 0 0 0 1 
+wb_mem_ctrl.STORE_BYTE~reg0 1 0 0 0 0 1 
+
+State Machine - |arm4usoc|arm4u_cpu:ARM4U|execute:e|mem_mem_ctrl
+Name mem_mem_ctrl.STORE_BYTE~reg0 mem_mem_ctrl.STORE_WORD~reg0 mem_mem_ctrl.LOAD_BURST~reg0 mem_mem_ctrl.LOAD_BYTE~reg0 mem_mem_ctrl.LOAD_WORD~reg0 mem_mem_ctrl.NO_MEM_OP~reg0 
+mem_mem_ctrl.NO_MEM_OP~reg0 0 0 0 0 0 0 
+mem_mem_ctrl.LOAD_WORD~reg0 0 0 0 0 1 1 
+mem_mem_ctrl.LOAD_BYTE~reg0 0 0 0 1 0 1 
+mem_mem_ctrl.LOAD_BURST~reg0 0 0 1 0 0 1 
+mem_mem_ctrl.STORE_WORD~reg0 0 1 0 0 0 1 
+mem_mem_ctrl.STORE_BYTE~reg0 1 0 0 0 0 1 
+
+State Machine - |arm4usoc|arm4u_cpu:ARM4U|decode:d|state
+Name state.FIQ_CYCLE2 state.IRQ_CYCLE2 state.SWI_CYCLE2 state.UNDEF_CYCLE2 state.RESET_CYCLE2 state.LDMSTM_WRITEBACK state.LDMSTM_RETURN_FROM_EXCEPTION state.LDMSTM_TRANSFER state.LOADSTORE_WRITEBACK state.ONE_LATENCY_CYCLE state.TWO_LATENCY_CYCLES state.RETURN_FROM_EXCEPTION state.MAIN_STATE 
+state.MAIN_STATE 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.RETURN_FROM_EXCEPTION 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.TWO_LATENCY_CYCLES 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.ONE_LATENCY_CYCLE 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.LOADSTORE_WRITEBACK 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.LDMSTM_TRANSFER 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.LDMSTM_RETURN_FROM_EXCEPTION 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.LDMSTM_WRITEBACK 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.RESET_CYCLE2 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.UNDEF_CYCLE2 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.SWI_CYCLE2 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.IRQ_CYCLE2 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.FIQ_CYCLE2 1 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |arm4usoc|arm4u_cpu:ARM4U|decode:d|exe_mem_ctrl
+Name exe_mem_ctrl.STORE_BYTE~reg0 exe_mem_ctrl.STORE_WORD~reg0 exe_mem_ctrl.LOAD_BURST~reg0 exe_mem_ctrl.LOAD_BYTE~reg0 exe_mem_ctrl.LOAD_WORD~reg0 exe_mem_ctrl.NO_MEM_OP~reg0 
+exe_mem_ctrl.NO_MEM_OP~reg0 0 0 0 0 0 0 
+exe_mem_ctrl.LOAD_WORD~reg0 0 0 0 0 1 1 
+exe_mem_ctrl.LOAD_BYTE~reg0 0 0 0 1 0 1 
+exe_mem_ctrl.LOAD_BURST~reg0 0 0 1 0 0 1 
+exe_mem_ctrl.STORE_WORD~reg0 0 1 0 0 0 1 
+exe_mem_ctrl.STORE_BYTE~reg0 1 0 0 0 0 1 
+
+State Machine - |arm4usoc|arm4u_cpu:ARM4U|decode:d|exe_alu_operation
+Name exe_alu_operation.ALU_RSC~reg0 exe_alu_operation.ALU_RSB~reg0 exe_alu_operation.ALU_SBC~reg0 exe_alu_operation.ALU_SUB~reg0 exe_alu_operation.ALU_ADC~reg0 exe_alu_operation.ALU_ADD~reg0 exe_alu_operation.ALU_RWF~reg0 exe_alu_operation.ALU_BIC~reg0 exe_alu_operation.ALU_EOR~reg0 exe_alu_operation.ALU_AND~reg0 exe_alu_operation.ALU_ORR~reg0 exe_alu_operation.ALU_NOT~reg0 exe_alu_operation.ALU_NOP~reg0 
+exe_alu_operation.ALU_NOP~reg0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+exe_alu_operation.ALU_NOT~reg0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+exe_alu_operation.ALU_ORR~reg0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+exe_alu_operation.ALU_AND~reg0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+exe_alu_operation.ALU_EOR~reg0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+exe_alu_operation.ALU_BIC~reg0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+exe_alu_operation.ALU_RWF~reg0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+exe_alu_operation.ALU_ADD~reg0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+exe_alu_operation.ALU_ADC~reg0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+exe_alu_operation.ALU_SUB~reg0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+exe_alu_operation.ALU_SBC~reg0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+exe_alu_operation.ALU_RSB~reg0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+exe_alu_operation.ALU_RSC~reg0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |arm4usoc|arm4u_cpu:ARM4U|cache:c|state
+Name state.S_DELAY state.S_READ state.S_WAIT state.S_READY 
+state.S_READY 0 0 0 0 
+state.S_WAIT 0 0 1 1 
+state.S_READ 0 1 0 1 
+state.S_DELAY 1 0 0 1 

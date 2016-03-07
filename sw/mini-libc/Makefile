@@ -40,8 +40,7 @@
 # ----------------------------------------------------------------
 # Compile mini-libc
 
-AMBER_CROSSTOOL ?= arm-elf
-#AMBER_CROSSTOOL ?= arm-none-linux-gnueabi
+AMBER_CROSSTOOL ?= arm-none-linux-gnueabi
 #AMBER_CROSSTOOL ?= amber-crosstool-not-defined
 
  SRC = printf.c memcpy.c libc_asm.S
@@ -53,10 +52,8 @@ TGT  = printf
 # optimize for size
 OPTIMIZE = -Os
  
-#CFLAGS  = -c -march=armv2a -mno-thumb-interwork $(OPTIMIZE) -ffreestanding -I../include
-CFLAGS  = -c -march=armv3 -mno-thumb-interwork $(OPTIMIZE) -ffreestanding -I../include  -mbig-endian  -mwords-little-endian
-#ASFLAGS = -I../include
-ASFLAGS = -I../include -mbig-endian
+CFLAGS  = -c -march=armv2a -mno-thumb-interwork $(OPTIMIZE) -ffreestanding -I../include
+ASFLAGS = -I../include
 
 $(TGT): $(OBJ)
 	

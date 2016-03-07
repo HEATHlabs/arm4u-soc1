@@ -41,7 +41,7 @@
 # Assembly source files
 
 SRC = hello-world.c start.S
-TGT = hello-world.elf
+TGT = hello-world-ldr.elf
 LDS = sections.lds
 
 USE_MINI_LIBC = 1

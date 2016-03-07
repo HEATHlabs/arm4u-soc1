@@ -1,0 +1,147 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00000000                . = 0x0
+
+.start          0x00000000      0x180
+ start*(.text)
+ .text          0x00000000      0x180 start.o
+                0x00000000                start
+                0x0000004c                _jump_to_program
+                0x00000094                _core_status
+
+.text           0x00000180     0x1058
+ *(.text)
+ .text          0x00000180      0x248 memtest.o
+                0x00000180                memTestDataBus
+                0x000001a8                memTestAddressBus
+                0x000002e4                memTestDevice1
+                0x00000350                memTestDevice2
+ .text          0x000003c8       0x70 newmain.o
+                0x000003c8                long_to_hex_string
+ .text          0x00000438      0x448 ../mini-libc/printf.o
+                0x00000438                outbyte
+                0x00000458                prints
+                0x00000534                printi
+                0x00000674                print
+                0x00000828                printf
+                0x00000854                sprintf
+ .text          0x00000880      0x480 ../mini-libc/libc_asm.o
+                0x00000880                _testfail
+                0x0000088c                _testpass
+                0x0000089c                _outbyte
+                0x000008bc                _inbyte
+                0x000008ec                __aeabi_idiv
+                0x000008ec                _div
+                0x00000970                strcpy
+                0x00000a74                strcmp
+                0x00000c6c                init_malloc
+                0x00000c78                malloc
+                0x00000c8c                strncpy
+                0x00000cb0                strncmp
+ .text          0x00000d00      0x4d8 ../mini-libc/memcpy.o
+                0x00000d00                memcpy
+
+.glue_7         0x000011d8        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x000011d8        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x000011d8        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x000011d8        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.text.startup   0x000011d8      0x1cc
+ .text.startup  0x000011d8      0x1cc newmain.o
+                0x000011d8                main
+
+.iplt           0x000013a4        0x0
+ .iplt          0x00000000        0x0 newmain.o
+
+.rodata         0x000013a4        0xc
+ *(.rodata)
+ .rodata        0x000013a4        0xc newmain.o
+
+.rodata.str1.4  0x000013b0      0x108
+ .rodata.str1.4
+                0x000013b0      0x108 newmain.o
+                                0x10c (size before relaxing)
+
+.rodata.str1.1  0x000014b8        0x7
+ .rodata.str1.1
+                0x000014b8        0x7 ../mini-libc/printf.o
+
+.rel.dyn        0x000014c0        0x0
+ .rel.iplt      0x00000000        0x0 newmain.o
+
+.data           0x000014bf        0x0
+ *(.data)
+ .data          0x000014bf        0x0 memtest.o
+ .data          0x000014bf        0x0 newmain.o
+ .data          0x000014bf        0x0 start.o
+ .data          0x000014bf        0x0 ../mini-libc/printf.o
+ .data          0x000014bf        0x0 ../mini-libc/libc_asm.o
+ .data          0x000014bf        0x0 ../mini-libc/memcpy.o
+
+.igot.plt       0x000014c0        0x0
+ .igot.plt      0x00000000        0x0 newmain.o
+
+.bss            0x000014bf        0x0
+ *(.bss)
+ .bss           0x000014bf        0x0 memtest.o
+ .bss           0x000014bf        0x0 newmain.o
+ .bss           0x000014bf        0x0 start.o
+ .bss           0x000014bf        0x0 ../mini-libc/printf.o
+ .bss           0x000014bf        0x0 ../mini-libc/libc_asm.o
+ .bss           0x000014bf        0x0 ../mini-libc/memcpy.o
+
+.stack          0x000014bf        0x0
+                0x000014bf                __stack = .
+LOAD memtest.o
+LOAD newmain.o
+LOAD start.o
+LOAD ../mini-libc/printf.o
+LOAD ../mini-libc/libc_asm.o
+LOAD ../mini-libc/memcpy.o
+OUTPUT(memtest.elf elf32-littlearm)
+
+.comment        0x00000000       0x30
+ .comment       0x00000000       0x30 memtest.o
+                                 0x31 (size before relaxing)
+ .comment       0x00000000       0x31 newmain.o
+ .comment       0x00000000       0x31 ../mini-libc/printf.o
+ .comment       0x00000000       0x31 ../mini-libc/memcpy.o
+
+.note.GNU-stack
+                0x00000000        0x0
+ .note.GNU-stack
+                0x00000000        0x0 memtest.o
+ .note.GNU-stack
+                0x00000000        0x0 newmain.o
+ .note.GNU-stack
+                0x00000000        0x0 ../mini-libc/printf.o
+ .note.GNU-stack
+                0x00000000        0x0 ../mini-libc/memcpy.o
+
+.ARM.attributes
+                0x00000000       0x29
+ .ARM.attributes
+                0x00000000       0x28 memtest.o
+ .ARM.attributes
+                0x00000028       0x28 newmain.o
+ .ARM.attributes
+                0x00000050       0x1b start.o
+ .ARM.attributes
+                0x0000006b       0x28 ../mini-libc/printf.o
+ .ARM.attributes
+                0x00000093       0x1b ../mini-libc/libc_asm.o
+ .ARM.attributes
+                0x000000ae       0x28 ../mini-libc/memcpy.o

@@ -39,7 +39,7 @@
 # ----------------------------------------------------------------
 # Assembly source files
 
-CC = d:\tcc\tcc
+CC = gcc
 
 all : amber-elfsplitter amber-func-jumps amber-bin2mem amber-mem-ascii amber-ascii-mem mem2mif
 

@@ -1,0 +1,32 @@
+;INITFS='Q:\Documents\fpga\de0nano\Amber-Marsohod2-master\sw\vmlinux\initrd-200k-hello-world'
+INITFS='D:\lin-share\vmlinux\disk\initrd'
+;LINUX='Q:\Documents\fpga\de0nano\Amber-Marsohod2-master\sw\vmlinux\vmlinux'
+;INITFS='D:\lin-share\vmlinux\disk\rootfs.cpio.gz.img'
+LINUX='D:\lin-share\vmlinux\vmlinux'
+PTIME=3
+
+  sprintf 'w 168 00400000'
+  sendln inputstr
+  
+  sprintf 'w 154 100C'
+  sendln inputstr
+
+    sprintf 'd 168 4'
+  sendln inputstr
+
+    sprintf 'd 154 4'
+  sendln inputstr
+
+   sprintf 'b 800000'
+  sendln inputstr
+xmodemsend INITFS 3
+
+pause PTIME
+
+  sprintf 'l'
+  sendln inputstr
+ xmodemsend LINUX 3
+ pause PTIME
+ 
+   sprintf 'j 80000'
+  sendln inputstr

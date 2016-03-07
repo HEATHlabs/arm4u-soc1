@@ -1,4 +1,4 @@
-﻿-- This file is part of ARM4U CPU
+-- This file is part of ARM4U CPU
 -- 
 -- This is a creation of the Laboratory of Processor Architecture
 -- of Ecole Polytechnique Fédérale de Lausanne ( http://lap.epfl.ch )

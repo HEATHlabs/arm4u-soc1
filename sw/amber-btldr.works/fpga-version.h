@@ -1,1 +1,0 @@
-#define AMBER_FPGA_VERSION "2015-10-03"

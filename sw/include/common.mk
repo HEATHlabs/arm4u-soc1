@@ -37,16 +37,14 @@
 #  from http://www.opencores.org/lgpl.shtml                     //
 #                                                               //
 # ----------------------------------------------------------------
-#arm-elf-objdump -h -D boot-loader.elf > boot-loader.lss2
 
 
 #MIN_SIZE = 1
 LIBC_OBJ         = ../mini-libc/printf.o ../mini-libc/libc_asm.o ../mini-libc/memcpy.o
 DEP             += ../include/amber_registers.h ../mini-libc/stdio.h
 TOOLSPATH        = ../tools
-#AMBER_CROSSTOOL ?= arm-none-linux-gnueabi
-#AMBER_CROSSTOOL ?= arm-none-linux-gnueabi
-AMBER_CROSSTOOL ?= arm-elf
+AMBER_CROSSTOOL ?= arm-none-linux-gnueabi
+AMBER_CROSSTOOL ?= arm-none-linux-gnueabi
 
   AS    = $(AMBER_CROSSTOOL)-as
   CC    = $(AMBER_CROSSTOOL)-gcc
@@ -55,20 +53,15 @@ AMBER_CROSSTOOL ?= arm-elf
   LD    = $(AMBER_CROSSTOOL)-ld
   DS    = $(AMBER_CROSSTOOL)-objdump
   OC    = $(AMBER_CROSSTOOL)-objcopy
- ELF    = $(TOOLSPATH)\amber-elfsplitter
- BMF32  = $(TOOLSPATH)\amber-memparams32.sh
- BMF128 = $(TOOLSPATH)\amber-memparams128.sh
+ ELF    = $(TOOLSPATH)/amber-elfsplitter.exe
+ BMF32  = ../tools/amber-memparams32.sh
+ BMF128 = ../tools/amber-memparams128.sh
 
  MMP32  = $(addsuffix _memparams32.v, $(basename $(TGT)))
  MMP128 = $(addsuffix _memparams128.v, $(basename $(TGT)))
  MEM    = $(addsuffix .mem, $(basename $(TGT)))
  DIS    = $(addsuffix .dis, $(basename $(TGT)))
  FLT    = $(addsuffix .flt, $(basename $(TGT)))
- HEX    = $(addsuffix .hex, $(basename $(TGT)))
- BIN    = $(addsuffix .bin, $(basename $(TGT)))
- LSS2    = $(addsuffix .lss2, $(basename $(TGT)))
- MIF    = $(addsuffix .mif, $(basename $(TGT)))
- 
  
 ifdef USE_MINI_LIBC
  OBJ = $(addsuffix .o,   $(basename $(SRC))) $(LIBC_OBJ)
@@ -97,34 +90,30 @@ endif
 
  MAe= $(addsuffix .map, $(bas to `memset' $(TGT))) 
  
- ASFLAGS = -I../include -mbig-endian
-# ASFLAGS = -I../include
- CFLAGS = -c $(OPTIMIZE) -march=armv3 -mno-thumb-interwork -ffreestanding -I../include  -mbig-endian -mwords-little-endian
-# CFLAGS = -c $(OPTIMIZE) -march=armv2a -mno-thumb-interwork -ffreestanding -I../include
-#  CFLAGS = -c $(OPTIMIZE) -march=armv2a -mno-thumb-interwork -ffreestanding -I../include -nostdlib #added for memtest
-CFLAGS += -Wa,-adhlns=$(subst $(suffix $<),.lst,$<)  
+ ASFLAGS = -I../include
+#  CFLAGS = -c $(OPTIMIZE) -march=armv2a -mno-thumb-interwork -ffreestanding -I../include
+ CFLAGS = -c $(OPTIMIZE) -march=armv3  -mno-thumb-interwork -ffreestanding -I../include -nostdlib #added for memtest
  DSFLAGS = -C -S -EL
- LDFLAGS = -Bstatic -Map $(MAP) --strip-debug --fix-v4bx
+ LDFLAGS = -Bstatic -Map $(MAP) --strip-debug --fix-v4bx 
 # LDFLAGS = -Bstatic -Map $(MAP) --strip-debug --fix-v4bx -lc -lgcc #added for memtest
 
-#ifdef USE_MINI_LIBC
-#debug:  mini-libc $(ELF) $(MMP32) $(MMP128) $(DIS)
-#else
-#debug:  $(ELF) $(MMP32) $(MMP128) $(DIS)
-#endif
-debug: 
+ifdef USE_MINI_LIBC
+debug:  mini-libc $(ELF) $(MMP32) $(MMP128) $(DIS)
+else
+debug:  $(ELF) $(MMP32) $(MMP128) $(DIS)
+endif
 
 all: $(TGT)
 distclean: clean
 
-#$(MMP32): $(MEM)
-#	$(BMF32) $(MEM) $(MMP32)
+$(MMP32): $(MEM)
+	$(BMF32) $(MEM) $(MMP32)
 
-#$(MMP128): $(MEM)
-#	$(BMF128) $(MEM) $(MMP128)
+$(MMP128): $(MEM)
+	$(BMF128) $(MEM) $(MMP128)
 
-#$(MEM): $(TGT)
-#	$(ELF) $(TGT) > $(MEM)
+$(MEM): $(TGT)
+	$(ELF) $(TGT) > $(MEM)
 
 $(TGT): $(OBJ)
 ifdef CREATE_FLT_OUTPUT
@@ -135,12 +124,7 @@ endif
 ifdef CHANGE_ADDRESS
 	$(OC) --change-addresses -0x1000000 $(TGT)
 endif
-	$(OC)  -O ihex $(TGT) $(HEX)
-	$(OC)  -O binary $(TGT) $(BIN)
-#	$(OC)  -D $(TGT) > $(LSS2)
-#	$(TOOLSPATH)/amber-bin2mem.exe $(BIN) > $(MEM)
-#	$(TOOLSPATH)/mem2mif $(MEM) > $(MIF)
-	
+
 $(OBJ): $(DEP)
 
 mini-libc:
@@ -153,5 +137,5 @@ $(DIS): $(TGT)
 	$(DS) $(DSFLAGS) $^ > $@
 
 clean:
-	@rm -rfv *.o *.elf *.flt *.gdb *.dis *.map *.mem *.v $(MMP32) $(MMP128) $(MEM) $(MIF) $(BIN) 
+	@rm -rfv *.o *.elf *.flt *.gdb *.dis *.map *.mem *.v $(MMP32) $(MMP128)
 

@@ -1,0 +1,33 @@
+STARTADR=16777216 ;16M
+;STARTADR=33554300 ;32M-128b
+;STARTADR=16384 ;16k
+
+
+TOTEWRDS=1024
+
+;i = 0
+;while i < TOTEWRDS
+;  sprintf 'w %x %x' i+STARTADR 0
+;  sendln inputstr
+;  i=i + 4
+;endwhile
+
+i = 0
+while i < TOTEWRDS
+  sprintf 'w %x %x' i+STARTADR i+STARTADR
+  sendln inputstr
+  i=i + 4
+endwhile
+
+sprintf 'h'
+sendln inputstr
+
+i = 0
+while i < TOTEWRDS
+  sprintf 'r %x' i+STARTADR
+  sendln inputstr
+  i=i + 4
+endwhile
+
+;sprintf 'd %x %d' STARTADR (TOTEWRDS-4)/4
+;sendln inputstr

@@ -1,0 +1,19 @@
+
+SPIPROG='Q:\Documents\fpga\de0nano\Amber-Marsohod2-master\sw\spi-ldr\spitest.elf'
+
+PTIME=3
+
+  sprintf 'l'
+  sendln inputstr
+ xmodemsend SPIPROG 3
+ pause PTIME
+ 
+   sprintf 'j 8000'
+  sendln inputstr
+
+
+r
+
+
+  sendln inputstr
+

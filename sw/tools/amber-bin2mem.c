@@ -42,7 +42,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../amber-btldr/boot-loader.h"
+#include "../boot-loader/boot-loader.h"
 
 /* Function prototypes */
 int fsize(FILE *f);
@@ -56,7 +56,7 @@ int main(int argc,char *argv[])
    unsigned char *buf;
    FILE *file_mem;
    int infile_size, buf_size, i, j;
-   int mem_start = FILE_ROM_BASE;
+   int mem_start = FILE_LOAD_BASE;
    int ret;
    
    if (argc<2){
@@ -98,8 +98,7 @@ int main(int argc,char *argv[])
       
    for (i=0;i<buf_size;i+=4) {
         printf("@%08x %02x%02x%02x%02x\n", mem_start + i, 
-                       buf[i+0], buf[i+1], buf[i+2], buf[i+3]);
-//BIG ENDIAN           buf[i+3], buf[i+2], buf[i+1], buf[i+0]);
+                       buf[i+3], buf[i+2], buf[i+1], buf[i+0]);
         }
    
    free(buf);
