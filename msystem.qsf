@@ -54,7 +54,7 @@ set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 # Analysis & Synthesis Assignments
 # ================================
 set_global_assignment -name FAMILY "Cyclone IV E"
-set_global_assignment -name TOP_LEVEL_ENTITY arm4usoc
+set_global_assignment -name TOP_LEVEL_ENTITY arm4u_SoC_basic
 set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
 set_global_assignment -name VERILOG_MACRO "MARSOHOD2=1"
@@ -117,103 +117,11 @@ set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -
 # end ENTITY(msystem)
 # -------------------
 set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
-set_location_assignment PIN_R8 -to brd_clk_p
-set_location_assignment PIN_J15 -to brd_n_rst
-set_location_assignment PIN_N16 -to i_uart0_tx
-set_location_assignment PIN_A15 -to led
-set_location_assignment PIN_P16 -to o_uart0_rx
-set_location_assignment PIN_N1 -to sdr_addr[11]
-set_location_assignment PIN_N2 -to sdr_addr[10]
-set_location_assignment PIN_P1 -to sdr_addr[9]
-set_location_assignment PIN_R1 -to sdr_addr[8]
-set_location_assignment PIN_T6 -to sdr_addr[7]
-set_location_assignment PIN_N8 -to sdr_addr[6]
-set_location_assignment PIN_T7 -to sdr_addr[5]
-set_location_assignment PIN_P8 -to sdr_addr[4]
-set_location_assignment PIN_M8 -to sdr_addr[3]
-set_location_assignment PIN_N6 -to sdr_addr[2]
-set_location_assignment PIN_N5 -to sdr_addr[1]
-set_location_assignment PIN_P2 -to sdr_addr[0]
-set_location_assignment PIN_M6 -to sdr_ba[1]
-set_location_assignment PIN_M7 -to sdr_ba[0]
-set_location_assignment PIN_L1 -to sdr_cas_n
-set_location_assignment PIN_R4 -to sdr_clk
-set_location_assignment PIN_K1 -to sdr_dq[15]
-set_location_assignment PIN_N3 -to sdr_dq[14]
-set_location_assignment PIN_P3 -to sdr_dq[13]
-set_location_assignment PIN_R5 -to sdr_dq[12]
-set_location_assignment PIN_R3 -to sdr_dq[11]
-set_location_assignment PIN_T3 -to sdr_dq[10]
-set_location_assignment PIN_T2 -to sdr_dq[9]
-set_location_assignment PIN_T4 -to sdr_dq[8]
-set_location_assignment PIN_R7 -to sdr_dq[7]
-set_location_assignment PIN_J1 -to sdr_dq[6]
-set_location_assignment PIN_J2 -to sdr_dq[5]
-set_location_assignment PIN_K2 -to sdr_dq[4]
-set_location_assignment PIN_K5 -to sdr_dq[3]
-set_location_assignment PIN_L8 -to sdr_dq[2]
-set_location_assignment PIN_G1 -to sdr_dq[1]
-set_location_assignment PIN_G2 -to sdr_dq[0]
-set_location_assignment PIN_T5 -to sdr_dqm[1]
-set_location_assignment PIN_R6 -to sdr_dqm[0]
-set_location_assignment PIN_L2 -to sdr_ras_n
-set_location_assignment PIN_C2 -to sdr_we_n
-set_location_assignment PIN_L4 -to sdr_addr[12]
 set_global_assignment -name VERILOG_MACRO "SDRAM_ISSI=0"
 set_global_assignment -name VERILOG_MACRO "NOMEMORY=0"
-set_location_assignment PIN_A13 -to led2
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to brd_clk_p
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to brd_n_rst
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to i_uart0_rts
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to i_uart0_tx
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to o_uart0_rx
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[11]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to o_uart0_cts
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[10]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[9]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[8]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[7]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[5]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led2
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[12]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_we_n
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_ras_n
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dqm[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dqm[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[5]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[7]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_addr[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_ba[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_ba[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_cas_n
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_clk
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[15]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[14]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[13]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[12]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[11]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[9]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[10]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_dq[8]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to mem_clk_o
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sys_clk_o
 set_global_assignment -name VERILOG_MACRO "ALTERAMEM=1"
 set_global_assignment -name VERILOG_MACRO "SDRAM=1"
 set_global_assignment -name VERILOG_MACRO "AMBER_UART_BAUD=921600"
-set_location_assignment PIN_P6 -to sdr_cs_n
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_cs_n
 set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334528" -section_id auto_signaltap_0
@@ -228,39 +136,7 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" 
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
-set_location_assignment PIN_C11 -to o_spi0_ss
-set_location_assignment PIN_C9 -to o_spi0_mosi
-set_location_assignment PIN_E11 -to o_spi0_sclk
-set_location_assignment PIN_A12 -to i_spi0_miso
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to i_spi0_int
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to i_spi0_miso
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to o_spi0_mosi
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to o_spi0_sclk
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to o_spi0_ss
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdr_cke
-set_location_assignment PIN_B13 -to led3
-set_location_assignment PIN_A11 -to led4
-set_location_assignment PIN_D1 -to led5
-set_location_assignment PIN_F3 -to led6
-set_location_assignment PIN_B1 -to led7
-set_location_assignment PIN_L3 -to led8
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led3
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led9
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led8
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led7
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led6
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led5
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led4
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id auto_signaltap_0
-set_location_assignment PIN_J16 -to i_spi1_miso
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to i_spi1_miso
-set_location_assignment PIN_M10 -to o_spi1_mosi
-set_location_assignment PIN_N15 -to o_spi1_sclk
-set_location_assignment PIN_L14 -to o_spi1_ss
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to o_spi1_mosi
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to o_spi1_sclk
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to o_spi1_ss
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "my_clocks_resets:u_clk_r|my_pll:my_pll_inst|c0" -section_id auto_signaltap_0
 set_global_assignment -name SLD_FILE "stp1_auto_stripped.stp\"p"
 set_global_assignment -name SEARCH_PATH sram/ -tag from_archive
 set_global_assignment -name SEARCH_PATH vlog/amber23/ -tag from_archive
@@ -274,234 +150,237 @@ set_global_assignment -name SEARCH_PATH vlog/tiny_spi/rtl/verilog/ -tag from_arc
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to i_spi0_miso
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to o_spi0_mosi
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to o_spi0_sclk
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to o_spi0_ss
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to i_spi1_miso
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to o_spi1_mosi
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to o_spi1_sclk
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to o_spi1_ss
-set_global_assignment -name VERILOG_FILE "soc/wb-bridge/avalon_to_wb_bridge.v"
-set_global_assignment -name VHDL_FILE soc/arm4u/writeback.vhd
-set_global_assignment -name VHDL_FILE soc/arm4u/register_file.vhd
-set_global_assignment -name VHDL_FILE soc/arm4u/memory.vhd
-set_global_assignment -name VHDL_FILE soc/arm4u/forwarding.vhd
-set_global_assignment -name VHDL_FILE soc/arm4u/fetch.vhd
-set_global_assignment -name VHDL_FILE soc/arm4u/execute.vhd
-set_global_assignment -name VHDL_FILE soc/arm4u/decode.vhd
-set_global_assignment -name VHDL_FILE soc/arm4u/cpu.vhd
-set_global_assignment -name VHDL_FILE soc/arm4u/cache.vhd
-set_global_assignment -name VHDL_FILE soc/arm4u/barrelshift.vhd
-set_global_assignment -name VHDL_FILE soc/arm4u/arm_types.vhd
-set_global_assignment -name VHDL_FILE soc/arm4u/alu.vhd
-set_global_assignment -name VERILOG_FILE "soc/arm4u-msystem.v"
-set_global_assignment -name VERILOG_FILE vlog/gpio/gpio_top.v
-set_global_assignment -name VERILOG_FILE vlog/gpio/gpio_defines.v
-set_global_assignment -name VERILOG_FILE vlog/tiny_spi/rtl/verilog/tiny_spi.v
-set_global_assignment -name VERILOG_FILE vlog/sdram/wb_sdram_ctrl/wb_sdram_ctrl.v
-set_global_assignment -name VERILOG_FILE vlog/sdram/wb_sdram_ctrl/wb_port.v
-set_global_assignment -name VERILOG_FILE vlog/sdram/wb_sdram_ctrl/sdram_ctrl.v
-set_global_assignment -name VERILOG_FILE vlog/sdram/wb_sdram_ctrl/dual_clock_fifo.v
-set_global_assignment -name VERILOG_FILE vlog/sdram/wb_sdram_ctrl/dpram_generic.v
-set_global_assignment -name VERILOG_FILE vlog/sdram/wb_sdram_ctrl/dpram_altera.v
-set_global_assignment -name VERILOG_FILE vlog/sdram/wb_sdram_ctrl/bufram.v
-set_global_assignment -name VERILOG_FILE vlog/sdram/wb_sdram_ctrl/arbiter.v
-set_global_assignment -name VERILOG_FILE vlog/system/wishbone_arbiter.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_cache.v
-set_global_assignment -name VERILOG_FILE vlog/system/memory_configuration.v
-set_global_assignment -name VERILOG_FILE vlog/lib/generic_sram_line_en.v
-set_global_assignment -name VERILOG_FILE vlog/lib/generic_sram_byte_en.v
-set_global_assignment -name VERILOG_FILE vlog/lib/generic_iobuf.v
-set_global_assignment -name VERILOG_FILE vlog/tb/global_defines.v
-set_global_assignment -name VERILOG_FILE vlog/tb/dumpvcd.v
-set_global_assignment -name VERILOG_FILE vlog/tb/debug_functions.v
-set_global_assignment -name VERILOG_FILE vlog/system/uart.v
-set_global_assignment -name VERILOG_FILE vlog/system/timer_module.v
-set_global_assignment -name VERILOG_FILE vlog/system/test_module.v
-set_global_assignment -name VERILOG_FILE vlog/system/system_functions.v
-set_global_assignment -name VERILOG_FILE vlog/system/system_config_defines.v
-set_global_assignment -name VERILOG_FILE vlog/system/register_addresses.v
-set_global_assignment -name VERILOG_FILE vlog/system/interrupt_controller.v
-set_global_assignment -name VERILOG_FILE vlog/system/ethmac_wb.v
-set_global_assignment -name VERILOG_FILE vlog/system/ddr3_afifo.v
-set_global_assignment -name VERILOG_FILE vlog/system/boot_mem128.v
-set_global_assignment -name VERILOG_FILE vlog/system/boot_mem32.v
-set_global_assignment -name VERILOG_FILE vlog/system/afifo.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_wishbone.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_register_bank.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_multiply.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_localparams.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_functions.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_fetch.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_execute.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_decode.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_core.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_coprocessor.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_config_defines.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_barrel_shift.v
-set_global_assignment -name VERILOG_FILE vlog/amber23/a23_alu.v
-set_global_assignment -name VERILOG_FILE my_clocks_resets.v
-set_global_assignment -name VERILOG_FILE sram/my_sram_2048_32_byte_en.v
-set_global_assignment -name VERILOG_FILE sram/my_sram_256_128_byte_en.v
-set_global_assignment -name VERILOG_FILE sram/my_sram_256_21_line_en.v
-set_global_assignment -name QIP_FILE sram/sram_256_128_byte_en.qip
-set_global_assignment -name QIP_FILE sram/sram_256_21_line_en.qip
-set_global_assignment -name QIP_FILE sram/sram_2048_32_byte_en.qip
-set_global_assignment -name QIP_FILE my_pll.qip
-set_global_assignment -name SIGNALTAP_FILE stp_sdr.stp
-set_global_assignment -name SIGNALTAP_FILE internal_mem.stp
-set_global_assignment -name SIGNALTAP_FILE "internal_mem-test.stp"
-set_global_assignment -name SOURCE_FILE db/msystem.cmp.rdb
-set_global_assignment -name SIGNALTAP_FILE "internal_mem-uartt.stp"
-set_global_assignment -name SIGNALTAP_FILE spi0.stp
-set_global_assignment -name VERILOG_FILE vlog/simplegpio/simple_gpio.v
-set_location_assignment PIN_L7 -to sdr_cke
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[10]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[11]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[12]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[13]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[14]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[15]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[16]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[17]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[18]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[19]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[20]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[21]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[22]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[23]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[24]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[25]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[26]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[27]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[28]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[29]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[30]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[31]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[4]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[27] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[5]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[6]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[7]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[8]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[9]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[10]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[11]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[12]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[13]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[14]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[38] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[15]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[39] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[16]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[17]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[18]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[19]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[43] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[44] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[20]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[45] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[21]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[46] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[22]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[47] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[23]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[48] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[24]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[49] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[25]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[50] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[26]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[51] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[27]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[52] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[28]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[53] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[29]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[54] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[55] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[30]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[56] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[31]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[57] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[58] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[4]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[59] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[5]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[60] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[6]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[61] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[7]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[62] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[8]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[63] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[9]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[64] -to i_uart0_tx -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[65] -to "my_clocks_resets:u_clk_r|my_pll:my_pll_inst|locked" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[66] -to "my_clocks_resets:u_clk_r|o_sdr_rst" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[67] -to "my_clocks_resets:u_clk_r|o_sys_rst" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[68] -to o_uart0_rx -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[10]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[11]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[12]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[13]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[14]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[15]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[16]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[17]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[18]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[19]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[20]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[21]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[22]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[23]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[24]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[25]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[26]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[27]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[28]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[29]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[30]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[31]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[4]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[5]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[6]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[7]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[8]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "avalon_to_wb_bridge:A2WB_data|wbm_adr_o[9]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[10]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[11]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[12]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[13]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[14]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[15]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[16]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[17]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[18]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[19]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[20]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[21]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[22]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[23]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[24]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[25]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[26]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[27]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[52] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[28]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[53] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[29]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[54] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[55] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[30]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[56] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[31]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[57] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[58] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[4]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[59] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[5]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[60] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[6]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[61] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[7]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[62] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[8]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[63] -to "avalon_to_wb_bridge:A2WB_instr|wbm_adr_o[9]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[64] -to i_uart0_tx -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[65] -to "my_clocks_resets:u_clk_r|my_pll:my_pll_inst|locked" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[66] -to "my_clocks_resets:u_clk_r|o_sdr_rst" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[67] -to "my_clocks_resets:u_clk_r|o_sys_rst" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[68] -to o_uart0_rx -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=69" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=69" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=57581" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=233" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=4096" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=39473" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=4096" -section_id auto_signaltap_0
+set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
+set_global_assignment -name QIP_FILE soc/arm4u_system/synthesis/arm4u_system.qip
+set_global_assignment -name VHDL_FILE soc/arm4u_sys_top.vhd
+set_global_assignment -name HEX_FILE "sw/hello-world/hello-world.hex"
+set_global_assignment -name MIF_FILE "sw/hello-world/hello-world.mif"
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLK_I
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RST_I
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to UART0_RXD_I
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to CLK_I -section_id auto_signaltap_0
+set_location_assignment PIN_R8 -to CLK_I
+set_location_assignment PIN_J15 -to RST_I
+set_location_assignment PIN_N16 -to UART0_RXD_I
+set_location_assignment PIN_P16 -to UART0_TXD_O
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to UART0_TXD_O
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to RST_I -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to RST_I -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[27] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[38] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[39] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[43] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[44] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[45] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[46] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[47] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[48] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[49] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[50] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[51] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[52] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[53] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[54] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[55] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[56] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[57] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[58] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[59] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[60] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[61] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[62] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[63] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[64] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[65] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_burstcount[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[66] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_burstcount[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[67] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_burstcount[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[68] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_burstcount[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[69] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[70] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[71] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[72] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[73] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[74] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[75] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[76] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[77] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[78] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[79] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[80] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[81] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[82] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[83] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[84] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[85] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[86] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[87] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[88] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[89] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[90] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[91] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[92] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[93] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[94] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[95] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[96] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[97] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[98] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[99] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[100] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[101] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[102] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_waitrequest" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[103] -to "arm4u_system:u0|arm4u_cpu:arm4u|clk" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[104] -to "arm4u_system:u0|arm4u_cpu:arm4u|reset" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_data_address[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[52] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[53] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[54] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[55] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[56] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[57] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[58] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[59] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[60] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[61] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[62] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[63] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[64] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_address[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[65] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_burstcount[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[66] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_burstcount[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[67] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_burstcount[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[68] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_burstcount[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[69] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[70] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[71] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[72] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[73] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[74] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[75] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[76] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[77] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[78] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[79] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[80] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[81] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[82] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[83] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[84] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[85] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[86] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[87] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[88] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[89] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[90] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[91] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[92] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[93] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[94] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[95] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[96] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[97] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[98] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[99] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[100] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[101] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_readdata[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[102] -to "arm4u_system:u0|arm4u_cpu:arm4u|avm_inst_waitrequest" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[103] -to "arm4u_system:u0|arm4u_cpu:arm4u|clk" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[104] -to "arm4u_system:u0|arm4u_cpu:arm4u|reset" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=105" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=105" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=65158" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=340" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=2048" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=52381" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=2048" -section_id auto_signaltap_0
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE "D:/arm4u-soc2/spi0_auto_stripped.stp"

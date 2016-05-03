@@ -21,6 +21,7 @@
 -- You are forbidden to forbid anyone else to use, share and improve
 -- what you give them.   Help stamp out software-hoarding!
 
+-- reset address is 0x000000
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;

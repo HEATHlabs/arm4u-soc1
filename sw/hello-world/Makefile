@@ -43,6 +43,7 @@
 SRC = hello-world.c start.S
 TGT = hello-world.elf
 LDS = sections.lds
+HEX = hello-world.hex
 
 USE_MINI_LIBC = 1
 CREATE_FLT_OUTPUT = 1

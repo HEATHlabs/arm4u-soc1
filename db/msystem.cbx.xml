@@ -1,21 +1,21 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="msystem">
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|arm4u_cpu:ARM4U|cache:c|altsyncram:g_data_sram" CBX_FILE_NAME="altsyncram_bfr1.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|arm4u_cpu:ARM4U|register_file:rf|altsyncram:reg_array[0][31]__3" CBX_FILE_NAME="altsyncram_5sg1.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_decode:wdecoder" CBX_FILE_NAME="decode_dvf.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:status_read_pointer_counter" CBX_FILE_NAME="cntr_23j.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|arm4u_cpu:ARM4U|execute:e|lpm_mult:Mult0" CBX_FILE_NAME="mult_7dt.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:read_pointer_counter" CBX_FILE_NAME="cntr_m9j.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|wb_sdram_ctrl:u_sdram|arbiter:arbiter|wb_port:wbports[0].wb_port|bufram:bufram|dpram_altera:dpram_altera.dpram_altera|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_gpi2.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|arm4u_cpu:ARM4U|cache:c|altsyncram:g_tag_sram" CBX_FILE_NAME="altsyncram_r9r1.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|arm4u_cpu:ARM4U|register_file:rf|altsyncram:reg_array[0][31]__1" CBX_FILE_NAME="altsyncram_5sg1.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|boot_mem32:u_boot_mem|my_sram_2048_32_byte_en:u_mem|sram_2048_32_byte_en:sram|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_6el1.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram" CBX_FILE_NAME="altsyncram_d124.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:status_advance_pointer_counter" CBX_FILE_NAME="cntr_hgi.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|arm4u_cpu:ARM4U|register_file:rf|altsyncram:reg_array[0][31]__2" CBX_FILE_NAME="altsyncram_5sg1.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|my_clocks_resets:u_clk_r|my_pll:my_pll_inst|altpll:altpll_component" CBX_FILE_NAME="my_pll_altpll.v"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_mux:mux" CBX_FILE_NAME="mux_tsc.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|arm4usoc|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:\adv_point_3_and_more:advance_pointer_counter" CBX_FILE_NAME="cntr_qgi.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|arm4u_system:u0|arm4u_cpu:arm4u|cache:c|altsyncram:g_data_sram" CBX_FILE_NAME="altsyncram_bfr1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|arm4u_system:u0|arm4u_cpu:arm4u|register_file:rf|altsyncram:reg_array[0][31]__3" CBX_FILE_NAME="altsyncram_5sg1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|arm4u_system:u0|arm4u_system_jtag_uart0:jtag_uart0|arm4u_system_jtag_uart0_scfifo_r:the_arm4u_system_jtag_uart0_scfifo_r|scfifo:rfifo" CBX_FILE_NAME="scfifo_ar21.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_decode:wdecoder" CBX_FILE_NAME="decode_dvf.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:status_read_pointer_counter" CBX_FILE_NAME="cntr_23j.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|arm4u_system:u0|arm4u_cpu:arm4u|execute:e|lpm_mult:Mult0" CBX_FILE_NAME="mult_7dt.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:read_pointer_counter" CBX_FILE_NAME="cntr_g9j.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|arm4u_system:u0|arm4u_cpu:arm4u|cache:c|altsyncram:g_tag_sram" CBX_FILE_NAME="altsyncram_r9r1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|arm4u_system:u0|arm4u_cpu:arm4u|register_file:rf|altsyncram:reg_array[0][31]__1" CBX_FILE_NAME="altsyncram_5sg1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|arm4u_system:u0|arm4u_system_ram0:ram0|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_eof1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram" CBX_FILE_NAME="altsyncram_p324.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:status_advance_pointer_counter" CBX_FILE_NAME="cntr_egi.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|arm4u_system:u0|arm4u_cpu:arm4u|register_file:rf|altsyncram:reg_array[0][31]__2" CBX_FILE_NAME="altsyncram_5sg1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|arm4u_system:u0|arm4u_system_jtag_uart0:jtag_uart0|arm4u_system_jtag_uart0_scfifo_w:the_arm4u_system_jtag_uart0_scfifo_w|scfifo:wfifo" CBX_FILE_NAME="scfifo_ar21.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_mux:mux" CBX_FILE_NAME="mux_rsc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|arm4u_SoC_basic|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:\adv_point_3_and_more:advance_pointer_counter" CBX_FILE_NAME="cntr_1ii.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

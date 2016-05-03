@@ -92,28 +92,30 @@ endif
  
  ASFLAGS = -I../include
 #  CFLAGS = -c $(OPTIMIZE) -march=armv2a -mno-thumb-interwork -ffreestanding -I../include
- CFLAGS = -c $(OPTIMIZE) -march=armv3  -mno-thumb-interwork -ffreestanding -I../include -nostdlib #added for memtest
+ CFLAGS = -c $(OPTIMIZE) -mlittle-endian -march=armv3  -mno-thumb-interwork -ffreestanding -I../include -nostdlib #added for memtest
  DSFLAGS = -C -S -EL
  LDFLAGS = -Bstatic -Map $(MAP) --strip-debug --fix-v4bx 
 # LDFLAGS = -Bstatic -Map $(MAP) --strip-debug --fix-v4bx -lc -lgcc #added for memtest
 
 ifdef USE_MINI_LIBC
-debug:  mini-libc $(ELF) $(MMP32) $(MMP128) $(DIS)
+#debug:  mini-libc $(ELF) $(MMP32) $(MMP128) $(DIS)
+debug:  mini-libc $(ELF)  $(DIS)
 else
-debug:  $(ELF) $(MMP32) $(MMP128) $(DIS)
+#debug:  $(ELF) $(MMP32) $(MMP128) $(DIS)
+debug:  $(ELF)  $(DIS)
 endif
 
 all: $(TGT)
 distclean: clean
 
-$(MMP32): $(MEM)
-	$(BMF32) $(MEM) $(MMP32)
+#$(MMP32): $(MEM)
+#	$(BMF32) $(MEM) $(MMP32)
 
-$(MMP128): $(MEM)
-	$(BMF128) $(MEM) $(MMP128)
+#$(MMP128): $(MEM)
+#	$(BMF128) $(MEM) $(MMP128)
 
-$(MEM): $(TGT)
-	$(ELF) $(TGT) > $(MEM)
+#$(MEM): $(TGT)
+#	$(ELF) $(TGT) > $(MEM)
 
 $(TGT): $(OBJ)
 ifdef CREATE_FLT_OUTPUT
@@ -121,6 +123,10 @@ ifdef CREATE_FLT_OUTPUT
 endif
 	$(LD) $(LDFLAGS) -o $(TGT) $(TLDS) $(OBJ)
 	$(OC) -R .comment -R .note $(TGT)
+ifdef HEX
+	$(OC) -O ihex $(TGT) $(HEX)
+endif
+
 ifdef CHANGE_ADDRESS
 	$(OC) --change-addresses -0x1000000 $(TGT)
 endif
